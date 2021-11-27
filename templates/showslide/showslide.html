@@ -1,0 +1,62 @@
+
+
+    <div class="container myslider">
+         <div id="myCarousel" class="carousel slide">
+            <div class="carousel-inner">
+                {% if slides %}
+                    {% for slide in slides %}
+                        <figure class="carousel-item {% if forloop.first %}active{% endif %}">
+
+                            <picture>
+                                <source media="(max-width: 900px)" srcset="{{ slide.image_800.url }}">
+                                <img src="{{ slide.image.url }}" alt="{{ slide.title }}">
+                            </picture>
+
+                            <figcaption class="carousel_explanation">
+                                <article class="carousel_title">
+                                    {# {{ slide.body | safe| truncatewords:12 | linebreaks }} #}
+                                    <h4 class="carousel_title_h">
+                                        {{ slide.title }}
+                                    </h4>
+                                    <small>{{ slide.description }}</small>
+                                    <div class="slide_body">
+                                    {{ slide.body | safe | truncatewords:44 }}
+                                    </div>
+                                </article>
+                                <a class="perma_link page-link" href="#">{{ slide.title }}</a>
+                            </figcaption>
+                        </figure>
+                    {% endfor %}
+                    {% else %}
+                    <p>null slides</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <ul class="pagination mt-4 carousel_nav">
+            <li class="page-item">
+                <span class="page-link">
+                    <input type="button" class="form-control start-slide" value="start">
+                </span>
+            </li>
+            <li class="page-item">
+                <span class="page-link">
+                    <input type="button" class="form-control pause-slide" value="pause">
+                </span>
+            </li>
+            <li class="page-item">
+                <span class="page-link">
+                    <input type="button" class="form-control prev-slide" value="previous slide">
+                </span>
+            </li>
+            <li class="page-item">
+                <span class="page-link">
+                    <input type="button" class="form-control next-slide" value="next slide">
+                </span>
+            </li>
+        </ul>
+
+    </div>
+
+
+

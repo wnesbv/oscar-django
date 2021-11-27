@@ -1,0 +1,21 @@
+
+{% load i18n %}
+
+<form {% if form_id %}id="{{ form_id }}"{% endif %} class="{{ class }} shadow p-3 mb-5 bg-body rounded" method="{{ method|default:"post" }}" {% if action %}action="{{ action }}"{% endif %} {% if includes_files %}enctype="multipart/form-data"{% endif %}>
+
+    {% if not method == "get" %}{% csrf_token %}{% endif %}
+
+    {% include 'oscar/partials/form_fields.html' %}
+
+    <ul class="list-group {% if style == 'horizontal' %}row{% endif %}">
+        <li class="list-group-item {% if style == 'horizontal' %}offset-sm-4 col-sm-8{% endif %}">
+            <button class="btn btn-outline-primary btn-sm me-2" type="submit" data-loading-text="{% trans 'Saving...' %}">
+                {% trans "Save" %}
+            </button>
+            {% trans "or" %}
+            <a class="btn btn-outline-primary btn-sm ms-2" href="#" onclick="window.history.go(-1);return false" >
+                {% trans "cancel" %}
+            </a>.
+        </li>
+    </ul>
+</form>

@@ -1,0 +1,48 @@
+
+{% extends "oscar/layout.html" %}
+
+{% load block_page_tags %}
+{% load flatpages_tags %}
+{% load static %}
+{% load i18n %}
+{% block title %}{{ flatpage.title }} | {{ block.super }}{% endblock %}
+
+{% block styles %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static 'slider/slider.css' %}">
+{% endblock %}
+
+{% block header%}
+    <div class="container page-header">
+        {% if user.is_staff %}
+            <a class="page-link float-end d-none d-md-block" href="{% url 'dashboard:page-update' pk=flatpage.id %}"><small><i class="fas fa-pencil-alt"></i> {% trans "Edit this page" %}</small></a>
+        {% endif %}
+        <h1 class="display-6">{{ flatpage.title }}</h1>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ homepage_url }}">{% trans "Home" %}</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">{{ flatpage.title }}</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{# block_page #}
+{% block block_promo %}
+    {% slide_block %}
+{% endblock %}
+
+{% block content %}
+    <article>{{ flatpage.content }}</article>
+{% endblock %}
+
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'slider/slider.js' %}"></script>
+{% endblock %}

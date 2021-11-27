@@ -1,0 +1,47 @@
+{% extends "oscar/layout.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Login or register' %} | {{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ homepage_url }}">{% trans 'Home' %}</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">{% trans 'Login or register' %}</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-6 login_form">
+            <form class="shadow p-3 mb-5 rounded" id="login_form" action="{{ request.get_full_path }}" method="post" >
+            <h2 class="lead">{% trans 'Log In' %}</h2>
+            {% csrf_token %}
+            {% include "oscar/partials/form_fields.html" with form=login_form %}
+            <p class="mt-2"><a class="page-link" href="{% url 'password-reset' %}">{% trans "I've forgotten my password" %}</a></p>
+            <button class="btn btn-outline-primary btn-sm" name="login_submit" type="submit" value="Log In"  data-loading-text="{% trans "Logging in..." %}">
+                {% trans 'Log In' %}
+            </button>
+            </form>
+        </div>
+        <div class="col-sm-6 register_form">
+            <form class="shadow p-3 mb-5 rounded" id="register_form" action="{{ request.get_full_path }}" method="post">
+            <h2 class="lead">{% trans 'Register' %}</h2>
+            {% csrf_token %}
+            {% include "oscar/partials/form_fields.html" with form=registration_form %}
+            <button class="btn btn-outline-primary btn-sm mt-3" name="registration_submit" type="submit" value="Register" data-loading-text="{% trans 'Registering...' %}">
+                {% trans 'Register' %}
+            </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}

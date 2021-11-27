@@ -1,0 +1,78 @@
+
+{% extends "oscar/base.html" %}
+{% load block_page_tags %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'oscar/css/styles.css' %}"/>
+{% endblock %}
+
+{% block layout %}
+    {# Top-horizontal bar with account, notifictions, dashboard links #}
+    {% include "oscar/partials/nav_accounts.html" %}
+
+    {# Site logo/title, mini-basket, browse dropdown and searchbox #}
+    <header class="header container">
+        <div class="page_inner shadow-sm bg-light rounded">
+            <div class="d-flex justify-content-between">
+                {% include "oscar/partials/brand.html" %}
+                {# Mini-basket wrapped in a block so some templates can now display it #}
+                {% block mini_basket %}{% include "oscar/partials/mini_basket.html" %}{% endblock %}
+            </div>
+        </div>
+        {% block navigation %}
+            {% include "oscar/partials/nav_primary.html" %}
+        {% endblock %}
+    </header>
+
+    {% block content_title %}{% endblock %}
+    {% block umessages %}{% endblock %}
+
+    {% block content_wrapper %}
+        <div class="container page">
+            <div class="page_inner">
+                {% block breadcrumbs %}{% endblock %}
+
+                {% block header %}
+                    <div class="container page-header">
+                        <h1 class="display-6">{% block headertext %}{% endblock %}</h1>
+                    </div>
+                {% endblock %}
+
+                {% include "oscar/partials/alert_messages.html" %}
+                {% block subnavigation %}{% endblock %}
+                <div class="content">
+                    {% block subheader %}{% endblock subheader %}
+
+                    {% block block_promo %}{% endblock %}
+
+                    <div class="mt-5" id="content_inner">
+                        {% block content %}{% endblock %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% include "oscar/partials/footer.html" %}
+{% endblock %}
+
+{# Local scripts #}
+{% block scripts %}
+{{ block.super }}
+    <!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <!-- Oscar -->
+<script src="{% static 'oscar/js/oscar/ui.js' %}"></script>
+{% endblock %}
+
+{% block extrascripts %}
+    {% include "oscar/partials/extrascripts.html" %}
+    {{ block.super }}
+{% endblock %}
+
+{% block onbodyload %}
+    {{ block.super }}
+    oscar.init();
+{% endblock %}

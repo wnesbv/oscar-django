@@ -1,0 +1,42 @@
+
+
+{% extends "oscar/layout.html" %}
+
+{% block content_title %}
+    <h1 class="container display-6 mt-5">Conversation details with | {{ recipient }}</h1>
+{% endblock %}
+
+{% block umessages %}
+
+    <div class="container h-100 p-5 bg-light border rounded-3">
+        <h2 class="lead">message details</h2>
+
+        {% for message in message_list %}
+            <ul class="list-group list-group-item message_details">
+
+                <li class="list-group-item">
+                    <span>
+                        {{ message.body }}
+                    </span>
+                </li>
+                <li class="list-group-item">
+                    <span>
+                        {% with message.sent_at as sent_at %}
+                            Received on {{ sent_at }}
+                        {% endwith %}
+                    </span>
+                </li>
+                <ul class="pagination mt-2 mb-4 update_delete">
+                    <li class="page-item mr-2">
+                        <a title="messages update" class="btn btn-outline-primary btn-sm" href="{% url 'messages_update' message.pk %}">update</a>
+                    </li>
+                    <li class="page-item ms-2">
+                        <a title="messages remove" class="btn btn-outline-danger btn-sm" href="{% url 'messages_remove' message.pk %}">delete</a>
+                    </li>
+                </ul>
+
+            </ul>
+        {% endfor %}
+    </div>
+
+{% endblock %}

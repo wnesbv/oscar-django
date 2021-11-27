@@ -1,0 +1,61 @@
+
+{% load static %}
+
+{% block block_promo %}
+    <section class="promo_slider shadow">
+        <div class="sld_img">
+            {% for item in slides_list %}
+
+                <div id="item-{{ item.product_link_id }}" class="card_item">
+                    {% if item.slide_photo %}
+                        <style>
+                            #item-{{ item.product_link_id }}.card_item .content::before,
+                            #item-{{ item.product_link_id }}.card_item .content .inner::after{
+                                background-image: url('{{ item.slide_photo.url }}')
+                            }
+                        </style>
+
+                        {% else %}
+                        <style>
+                            #item-{{ item.product_link_id }}.card_item .content::before,
+                            #item-{{ item.product_link_id }}.card_item .content .inner::after{
+                                background-image: url('/media/publisher_photo/image_not_found.jpg')
+                            }
+                        </style>
+                    {% endif %}
+
+                    <div class="content">
+                        <div class="inner_shadow"></div>
+                        <div class="inner"></div>
+                        <span class="number" data-text="{{ item.id }}">{{ item.id }}</span>
+
+                        <ul class="item_name list-group list-group-flush shadow">
+                            <li class="ctx_item">
+                                {{ item.name }}
+                            </li>
+                        </ul>
+
+                        <ul class="content_text list-group list-group-flush shadow">
+                            <li class="ctx_item">{{ item.specific_explanation }}</li>
+                            <li class="ctx_item">{{ item.paragraph | safe | truncatechars:200 }}</li>
+                            <li class="ctx_item">
+                                <a class="item_product_link" href="{{ item.product_link.get_absolute_url }}">
+                                    {{ item.product_link }}
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="publish_date list-group list-group-flush shadow">
+                            <li class="ctx_item">
+                            	<time>{{ item.created_at }}</time> | <time>{{ item.modified_at }}</time>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="sld_trigger shadow"></div>
+    </section>
+{% endblock %}
+

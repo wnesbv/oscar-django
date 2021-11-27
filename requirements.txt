@@ -1,0 +1,26 @@
+# requirements.txt
+django
+python-dotenv
+pillow
+django-extra-views
+# django-haystack
+django-treebeard
+Babel
+purl
+phonenumbers
+django-phonenumber-field
+factory-boy
+django-tables2
+django-widget-tweaks
+sorl-thumbnail
+easy-thumbnails
+django-ckeditor
+# heroku
+pycountry
+django-heroku
+dj-database-url
+gunicorn
+psycopg2
+django-storages
+boto3
+raven

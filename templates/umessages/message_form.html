@@ -1,0 +1,43 @@
+
+
+{% extends "oscar/layout.html" %}
+{% load widget_tweaks %}
+{% block title %} messages {% endblock title %}}
+
+{% block umessages %}
+
+    <div class="container h-100 p-5 bg-light border rounded-3">
+        <h2 class="lead mt-5">compose</h2>
+
+        <div class="card list_username mt-5 ms-4">
+            <ul class="list-group m-2">
+                {% for item in master %}
+                    <li class="list-group-item">
+                        <span>{{ item.username }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-body">
+                <form action=""  method="POST" id="compose_message_form">
+                    {% csrf_token %}
+                    <fieldset class="">
+                        <div class="mb-3">
+                            {% render_field form.to type="text" class="form-control" placeholder="to name" %}
+                            {{ form.to|add_label_class:"form-label" }}
+                        </div>
+                        <div class="mb-3">
+                            {% render_field form.body type="text" class="form-control" placeholder="contact text" %}
+                            {{ form.body|add_label_class:"form-label" }}
+                        </div>
+                    </fieldset>
+                    <input class="btn btn-primary btn-sm" type="submit" name="send" value="send" />
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

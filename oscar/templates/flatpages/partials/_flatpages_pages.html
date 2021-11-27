@@ -1,0 +1,10 @@
+
+
+<!-- flatpages Widget -->
+    {% for flatpages in flatpages_list %}
+        <li>
+            <a class="dropdown-item" href="{{ flatpages.get_absolute_url }}">
+                {{ flatpages.title }}
+            </a>
+        </li>
+    {% endfor %}

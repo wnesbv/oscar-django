@@ -1,0 +1,29 @@
+
+
+{% extends "oscar/layout.html" %}
+{% load widget_tweaks %}
+{% block title %} message update {% endblock title %}
+
+{% block umessages %}
+
+    <div class="container h-100 p-5 bg-light border rounded-3">
+        <h2 class="lead">message form update</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <div class="form_group">
+                    {% render_field form.body type="text" class="form_control" placeholder="contact name" %}
+                    {{ form.body|add_label_class:"form_label" }}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-primary btn-sm mt-4" type="submit">post</button>
+            </div>
+        </form>
+
+    </div>
+
+{% endblock %}

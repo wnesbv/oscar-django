@@ -1,0 +1,24 @@
+
+
+{% extends "oscar/layout.html" %}
+
+{% block umessages %}
+
+    <div class="container h-100 p-5 bg-light border rounded-3">
+        <h2 class="lead">message confirm delete</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Delete Message</legend>
+                <span>Are you sure you want to delete the fiel</span> <span>"{{ message }}"</span>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-danger btn-sm" type="submit">Yes Delete</button>
+                <a class="btn btn-outline-secondary btn-sm" href="{% url 'umessages_list' %}">Cancel</a>
+            </div>
+        </form>
+
+    </div>
+
+{% endblock %}

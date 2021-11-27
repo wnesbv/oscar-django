@@ -1,0 +1,7 @@
+
+{% load i18n %}
+
+<form class="d-flex" method="GET" action="{% url 'search:search' %}">
+    <input class="form-control me-2" name="q" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success btn-sm" type="submit">{% trans "Search" %}</button>
+</form>

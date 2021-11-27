@@ -1,0 +1,55 @@
+
+
+{% extends "oscar/layout.html" %}
+{% load umessages_tags %}
+{% block title %} messages {% endblock title %}
+
+{% block content_title %}
+    <h1 class="container display-6 mt-5">messages</h1>
+{% endblock content_title%}
+
+{% block umessages %}
+    <div class="container h-100 p-5 bg-light border rounded-3">
+        <h2 class="lead">message list</h2>
+
+        {% get_unread_message_count_for user as unread_message_count %}
+        <span class="list-group-item">
+            {{ unread_message_count }} new messages
+        </span>
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a class="btn btn-primary btn-sm" href="{% url 'umessages_compose' %}">compose</a>
+            </li>
+
+            {% for message in message_list %}
+                <li class="list-group-item">
+                    {% if message.um_from_user == user %}
+                        <span class="mr-2">to whom the message is addressed (see)</span>
+                        <a class="btn btn-primary btn-sm" href="{% url 'umessages_detail' message.um_to_user.username %}">
+                            {{ message.um_to_user }}
+                        </a>
+                        {% get_unread_message_count_between user and message.um_to_user as unread_between_count %}
+                            {% else %}
+                            <a class="btn btn-primary btn-sm" href="{% url 'umessages_detail' message.um_from_user.username %}">
+                                {{ message.um_from_user }}
+                            </a>
+                            {% get_unread_message_count_between user and message.um_from_user as unread_between_count %}
+                    {% endif %}
+                </li>
+
+                <li class="list-group-item">
+                    <span>
+                        {{ message.latest_message.body | truncatewords:20 }}
+                    </span>
+                </li>
+                <li class="list-group-item">
+                    <span>({{ unread_between_count }} new)</span>
+                </li>
+
+            {% endfor %}
+
+        </ul>
+    </div>
+
+{% endblock %}
