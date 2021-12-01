@@ -247,7 +247,7 @@ CKEDITOR_CONFIGS = {
 
 
 DATABASES_SWITCHING = DATABASES
-
+# to use sqlite3: comment out the bottom content
 import django_heroku
 import dj_database_url
 
