@@ -27,7 +27,7 @@
                                     {{ slide.paragraph | safe | truncatewords:44 }}
                                     </div>
                                 </article>
-                                <a class="perma_link page-link" href="#">{{ slide.name }}</a>
+                                <a class="perma_link page-link" href="{{ slide.product_link.get_absolute_url }}">{{ slide.name }}</a>
                             </figcaption>
                         </figure>
                     {% endfor %}
