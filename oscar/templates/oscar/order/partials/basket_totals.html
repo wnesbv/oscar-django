@@ -1,10 +1,11 @@
+
 {% load i18n %}
 {% load currency_filters %}
 
 <div id="basket_totals">
     <table class="table table-sm">
         <tr>
-            <th colspan="2"><h3>{% trans "Basket" %}</h3></th>
+            <th colspan="2"><h3 class="lead">{% trans "Basket" %}</h3></th>
         </tr>
         {% with discounts=order.basket_discounts %}
             {% block discount_totals %}
@@ -28,13 +29,15 @@
                         <th class="total">{% trans "Basket total (after discounts)" %}</th>
                         <th class="total text-right">{{ order.basket_total_incl_tax|currency:order.currency }}</th>
                     </tr>
-                {% else %}
+
+                    {% else %}
                     <tr class="basket-items">
                         <th class="total">{% trans "Basket total" %}</th>
                         <th class="total text-right">
                             {% if show_tax_separately %}
                                 {{ order.basket_total_excl_tax|currency:order.currency }}
-                            {% else %}
+
+                                {% else %}
                                 {{ order.basket_total_incl_tax|currency:order.currency }}
                             {% endif %}
                         </th>
@@ -49,7 +52,7 @@
                 <td></td>
             </tr>
             <tr>
-                <th colspan="2"><h3>{% trans "Shipping" %}</h3></th>
+                <th colspan="2"><h3 class="lead">{% trans "Shipping" %}</h3></th>
             </tr>
             <tr>
                 <td>{% trans "Shipping method" %}</td>
@@ -92,7 +95,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <th colspan="2"><h3>{% trans "Surcharges" %}</h3></th>
+                    <th colspan="2"><h3 class="lead">{% trans "Surcharges" %}</h3></th>
                 </tr>
                 {% for charge in surcharges %}
                 <tr>
@@ -129,7 +132,7 @@
                         <th colspan="2">&nbsp;</th>
                     </tr>
                     <tr>
-                        <th colspan="2"><h3>{% trans "Post order actions" %}</h3></th>
+                        <th colspan="2"><h3 class="lead">{% trans "Post order actions" %}</h3></th>
                     </tr>
                     {% for action in order.post_order_actions %}
                         <tr>
@@ -145,7 +148,7 @@
                 <th colspan="2">&nbsp;</th>
             </tr>
             <tr>
-                <td class="total"><h3>{% trans "Order total" %}</h3></td>
+                <td class="total"><h3 class="lead">{% trans "Order total" %}</h3></td>
                 <td class="total text-right"><h3 class="price_color">{{ order.total_incl_tax|currency:order.currency }}</h3></td>
             </tr>
         {% endblock order_total %}

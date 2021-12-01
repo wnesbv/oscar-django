@@ -22,8 +22,8 @@
 {% endblock %}
 
 {% block dashboard_content %}
-    <div class="table-header">
-        <h3><i class="fas fa-search"></i> {% trans "Search product alerts" %}</h3>
+    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+        <h3 class="lead"><i class="bi bi-search me-2"></i>{% trans "Search product alerts" %}</h3>
     </div>
     <div class="card card-body">
         <form method="get" class="form-inline">
@@ -40,8 +40,8 @@
         </form>
     </div>
 
-    <div class="table-header">
-        <h2><i class="fas fa-users"></i> {{ queryset_description }}</h2>
+    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+        <h2 class="lead"><i class="fas fa-users"></i> {{ queryset_description }}</h2>
     </div>
 
     {% if alerts %}
@@ -74,7 +74,7 @@
                     <td>
                         <div class="btn-toolbar">
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {% trans "Actions" %}
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">

@@ -1,10 +1,10 @@
 {% extends 'oscar/dashboard/layout.html' %}
 {% load i18n %}
-
-{% block body_class %}{{ block.super }} reports{% endblock %}
 {% block title %}
     {% trans "Reports" %} | {{ block.super }}
 {% endblock %}
+
+{% block body_class %}{{ block.super }} reports{% endblock %}
 
 {% block breadcrumbs %}
     <nav aria-label="breadcrumb">
@@ -20,22 +20,30 @@
 {% endblock %}
 
 {% block dashboard_content %}
-    <div class="table-header">
-        <h3><i class="fas fa-chart-bar"></i> {% trans "Reporting dashboard" %}</h3>
+    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+        <h3 class="lead">
+            <i class="bi bi-bar-chart-line me-2"></i>
+            {% trans "Reporting dashboard" %}
+        </h3>
     </div>
     <div class="card card-body">
         <form method="get" class="form-inline">
             {% include "oscar/dashboard/partials/form_fields_inline.html" with form=form %}
             <span class="form-group">
                 {# data-loading-text is deliberately not used here so that the button doesn't stay disabled after a CSV download has started #}
-                <button type="submit" id='generate_report' class="btn btn-primary btn-sm">{% trans "Generate report" %}</button>
+                <button class="btn btn-outline-primary btn-sm" type="submit" id='generate_report'>
+                    {% trans "Generate report" %}
+                </button>
             </span>
         </form>
     </div>
 
     {% if description %}
-        <div class="table-header">
-            <h3><i class="fas fa-chart-bar"></i> {{ description }}</h3>
+        <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+            <h3 class="lead">
+                <i class="bi bi-bar-chart-line me-2"></i>
+                {{ description }}
+            </h3>
         </div>
     {% endif %}
 

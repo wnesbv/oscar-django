@@ -24,7 +24,7 @@
 
 {% block column_left %}
     {% if has_facets %}
-        <h4>{% trans "Refine your search" %}</h4>
+        <h3 class="lead">{% trans "Refine your search" %}</h4>
         <dl>
             {% for field, data in facet_data.items %}
                 {% if data.results %}
@@ -62,7 +62,7 @@
                     Found <strong>{{ num_results }}</strong> results.
                 {% endblocktrans %}
             {% endif %}
-            <div class="float-right">
+            <div class="float-end">
                 {% include "oscar/partials/form_field.html" with field=search_form.sort_by %}
             </div>
 

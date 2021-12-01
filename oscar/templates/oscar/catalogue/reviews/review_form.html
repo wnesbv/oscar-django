@@ -25,7 +25,7 @@
                         </div>
 
                         {% for error in form.score.errors %}
-                            <span class="error-block"><i class="fas fa-exclamation"></i> {{ error }}</span>
+                            <span class="error-block"><i class="bi bi-exclamation-lg"></i> {{ error }}</span>
                         {% endfor %}
                     </div>
 
@@ -38,14 +38,19 @@
                 {% if form.name %}
                     {% include 'oscar/partials/form_field.html' with field=form.name %}
                 {% endif %}
+
                 {% if form.email %}
                     {% include 'oscar/partials/form_field.html' with field=form.email %}
                 {% endif %}
-
-
-                <button type="submit" class="btn btn-primary btn-lg" data-loading-text="{% trans 'Saving...' %}">{% trans "Save review" %}</button>
-                {% trans "or" %}
-                <a href="{{ product.get_absolute_url }}">{% trans "cancel" %}</a>
+                <p class="mt-2">
+                    <button class="btn btn-outline-primary btn-sm me-2" type="submit" data-loading-text="{% trans 'Saving...' %}">
+                        {% trans "Save review" %}
+                    </button>
+                    {% trans "or" %}
+                    <a class="btn btn-outline-primary btn-sm ms-2" href="{{ product.get_absolute_url }}">
+                        {% trans "cancel" %}
+                    </a>
+                </p>
             </fieldset>
         </form>
     </div>

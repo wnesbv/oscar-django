@@ -22,13 +22,13 @@
 
 {% block dashboard_content %}
 
-    <div class="table-header">
-        <h2>{% trans "Voucher details" %}</h2>
+    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+        <h2 class="lead">{% trans "Voucher details" %}</h2>
     </div>
     {% include "oscar/dashboard/vouchers/partials/voucher_details_table.html" %}
 
-    <div class="table-header">
-        <h2>{% trans "Attached offers" %}</h2>
+    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+        <h2 class="lead">{% trans "Attached offers" %}</h2>
     </div>
     <table class="table table-striped table-bordered table-hover">
         {% if voucher.offers.exists %}
@@ -82,8 +82,8 @@
         {% endif %}
     </table>
 
-    <div class="table-header">
-        <h2>{% trans "Voucher performance" %}</h2>
+    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+        <h2 class="lead">{% trans "Voucher performance" %}</h2>
     </div>
     <table class="table table-striped table-bordered table-hover">
         <tbody>
@@ -93,8 +93,8 @@
         </tbody>
     </table>
 
-    <div class="table-header">
-        <h2>{% trans "Recent orders" %}</h2>
+    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+        <h2 class="lead">{% trans "Recent orders" %}</h2>
     </div>
 
     <table class="table table-striped table-bordered table-hover">
@@ -126,11 +126,11 @@
 
     <div class="form-actions">
         {% if not voucher.voucher_set %}
-        <a class="btn btn-primary" href="{% url 'dashboard:voucher-update' pk=voucher.id %}">{% trans "Edit" %}</a> {% trans "or" %}
+        <a class="btn btn-outline-primary btn-sm" href="{% url 'dashboard:voucher-update' pk=voucher.id %}">{% trans "Edit" %}</a> {% trans "or" %}
         {% else %}
-        <a class="btn btn-primary" href="{% url 'dashboard:voucher-set-update' pk=voucher.voucher_set.pk %}">{% trans "Edit set" %}</a> {% trans "or" %}
+        <a class="btn btn-outline-primary btn-sm" href="{% url 'dashboard:voucher-set-update' pk=voucher.voucher_set.pk %}">{% trans "Edit set" %}</a> {% trans "or" %}
         {% endif %}
-        <a class="btn btn-danger" href="{% url 'dashboard:voucher-delete' pk=voucher.id %}">
+        <a class="btn btn-danger btn-sm" href="{% url 'dashboard:voucher-delete' pk=voucher.id %}">
         {% if not voucher.voucher_set %}
         {% trans "Delete" %}
         {% else %}

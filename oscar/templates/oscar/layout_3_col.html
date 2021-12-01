@@ -1,3 +1,4 @@
+
 {% extends "oscar/layout.html" %}
 
 {% block content_wrapper %}
@@ -6,12 +7,10 @@
             {% block breadcrumbs %}{% endblock %}
 
             <div class="row">
-
                 <aside class="col-sm-3">
                     {% block column_left %}
                     {% endblock %}
                 </aside>
-
                 <div class="col-sm-6">
                     {% block header %}
                         <div class="container page-header">
@@ -28,8 +27,7 @@
                     {% endblock %}
                 </aside>
 
-            </div><!-- /row -->
-
-        </div><!-- /page_inner -->
-    </div><!-- /container -->
+            </div>
+        </div>
+    </div>
 {% endblock %}

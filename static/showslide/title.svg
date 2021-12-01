@@ -4,22 +4,13 @@
 	 viewBox="0 0 835.600708 455.8378906" style="enable-background:new 0 0 835.600708 455.8378906;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:none;}
-	.st1{fill:#A9B6C4;}
-	.st2{fill:#9EC6EF;}
-	.st3{fill:#FFFFFF;}
-	.st4{fill:#9EC6EF;}
-	.st5{opacity:0.44;fill:#414042;}
-	.st6{fill:#D4D7DB;}
+	.st1{fill:#F2F2F2;}
+	.st2{fill:#89BCDA;}
+	.st3{fill:#F2F2F2;}
+	.st4{fill:#89BCDA;}
+	.st5{opacity:0.44;fill:#F2F2F2;}
+	.st6{fill:#F2F2F2;}
 </style>
-<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="374.3204346" y1="-192.0800934" x2="375.0275269" y2="-191.3729858">
-	<stop  offset="0" style="stop-color:#E1DFDF"/>
-	<stop  offset="0.1738151" style="stop-color:#DBDAD8"/>
-	<stop  offset="0.352005" style="stop-color:#CCC9C6"/>
-	<stop  offset="0.5322592" style="stop-color:#B2AEA9"/>
-	<stop  offset="0.7138845" style="stop-color:#918C87"/>
-	<stop  offset="0.8949245" style="stop-color:#6B6664"/>
-	<stop  offset="1" style="stop-color:#535050"/>
-</linearGradient>
 <g id="XMLID_22_">
 	<rect id="XMLID_2_" class="st0" width="835.600708" height="455.8378906"/>
 	<polygon id="XMLID_24_" class="st1" points="835.600708,181.4037933 359.1373291,455.8378601 835.600708,455.8378601 	"/>
@@ -41,8 +32,6 @@
 		578.6153564,121.774147 	"/>
 </g>
 <g id="XMLID_15_">
-	<polygon id="XMLID_5_" class="st5" points="538.4991455,205.4149933 635.2999268,150.6210938 732.1012573,205.4149933 
-		732.1012573,315.0028992 635.2999268,369.7958984 538.4991455,315.0028992 	"/>
 	<polygon id="XMLID_14_" class="st2" points="550.5318604,198.6063995 635.2999268,149.6654968 720.069458,198.6063995 
 		720.069458,296.4891968 635.2999268,345.4296875 550.5318604,296.4891968 	"/>
 	<g id="XMLID_7_">

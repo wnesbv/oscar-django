@@ -1,12 +1,12 @@
+
 {% extends 'oscar/dashboard/layout.html' %}
 {% load i18n %}
 {% load render_table from django_tables2 %}
-
-{% block body_class %}{{ block.super }} catalogue{% endblock %}
-
 {% block title %}
     {% trans "Products" %} | {{ block.super }}
 {% endblock %}
+
+{% block body_class %}{{ block.super }} catalogue{% endblock %}
 
 {% block breadcrumbs %}
     <nav aria-label="breadcrumb">
@@ -29,29 +29,32 @@
 
 {% block dashboard_content %}
     {% block create_product %}
-        <div class="table-header">
-            <h3><i class="fas fa-sitemap"></i> {% trans "Create new product" %}</h3>
+        <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+            <h4 class="lead">
+                <i class="bi bi-diagram-3-fill me-2"></i>
+                {% trans "Create new product" %}
+            </h4>
         </div>
-        <div class="card card-body">
-            <form action="{% url 'dashboard:catalogue-product-create' %}" method="get" class="form-inline">
+        <div class="shadow p-3 mb-5 bg-body rounded">
+            <form class="d-flex" action="{% url 'dashboard:catalogue-product-create' %}" method="get">
                 {% include "oscar/dashboard/partials/form_fields_inline.html" with form=productclass_form %}
-                <button class="btn btn-primary" type="submit" data-loading-text="{% trans 'Submitting...' %}">
-                    <i class="fas fa-plus-circle"></i> {% trans "New Product" %}
+                <button class="btn btn-outline-primary btn-sm" type="submit" data-loading-text="{% trans 'Submitting...' %}">
+                    <i class="bi bi-plus-circle me-2"></i>
+                    {% trans "New Product" %}
                 </button>
             </form>
         </div>
     {% endblock %}
 
     {% block search_products %}
-        <div class="table-header">
-            <h3><i class="fas fa-search"></i> {% trans "Search Products" %}</h3>
+        <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+            <h4 class="lead">
+                <i class="bi bi-search me-2"></i>
+                {% trans "Search Products" %}
+            </h4>
         </div>
-        <div class="card card-body">
-            <form method="get" class="form-inline">
-                {% comment %}
-                    Add the current query string to the search form so that the
-                    sort order is not reset when searching.
-                {% endcomment %}
+        <div class="shadow p-3 mb-5 bg-body rounded">
+            <form class="d-flex" method="get">
                 {% for name, value in request.GET.items %}
                     {% if name not in form.fields %}
                         <input type="hidden" name="{{ name }}" value="{{ value }}"/>
@@ -59,7 +62,10 @@
                 {% endfor %}
 
                 {% include "oscar/dashboard/partials/form_fields_inline.html" with form=form %}
-                <button type="submit" class="btn btn-primary" data-loading-text="{% trans 'Searching...' %}"><i class="fas fa-search"></i> {% trans "Search" %}</button>
+                <button class="btn btn-outline-primary btn-sm" type="submit" data-loading-text="{% trans 'Searching...' %}">
+                    <i class="bi bi-search me-2"></i>
+                    {% trans "Search" %}
+                </button>
             </form>
         </div>
     {% endblock %}

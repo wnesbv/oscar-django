@@ -28,8 +28,11 @@
 {% endblock header %}
 
 {% block dashboard_content %}
-    <div class="table-header">
-        <h3><i class="fas fa-search"></i> {% trans "Search" %}</h3>
+    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+        <h3 class="lead">
+            <i class="bi bi-search me-2"></i>
+            {% trans "Search" %}
+        </h3>
     </div>
     <div class="card card-body bg-light">
         <form method="get" class="form-inline" id="search_form">
@@ -38,7 +41,7 @@
                     {% if field.is_hidden %}
                         {% render_field field class+='form-control' %}
                     {% else %}
-                        <div class="form-group mr-2">
+                        <div class="form-group me-2">
                             {{ field.label_tag }}
                             {% render_field field class+='form-control' %}
                             {% for error in field.errors %}
@@ -89,7 +92,7 @@
                     <div class="float-end">
                         <div class="form-inline">
                             <label>{% trans "Download selected orders as a CSV" %}</label>
-                            <button type="submit" class="btn btn-primary" name="action" value="download_selected_orders" data-loading-text="{% trans 'Submitting...' %}">{% trans "Download" %}</button>
+                            <button type="submit" class="btn btn-outline-primary" name="action" value="download_selected_orders" data-loading-text="{% trans 'Submitting...' %}">{% trans "Download" %}</button>
                         </div>
                     </div>
                 </caption>
@@ -129,7 +132,7 @@
                         <td>{{ order.billing_address|default:"-" }}</td>
                         <td>{{ order.date_placed }}</td>
                         <td>
-                            <a class="btn btn-secondary" href="{% url 'dashboard:order-detail' number=order.number %}">{% trans "View" %}</a>
+                            <a class="btn btn-outline-secondary btn-sm" href="{% url 'dashboard:order-detail' number=order.number %}">{% trans "View" %}</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -138,7 +141,10 @@
             {% endblock order_list %}
             {% block order_actions %}
                 <div class="card card-body bg-light">
-                    <h3 class="lead"><i class="fas fa-exclamation-circle"></i> {% trans "Change order status" %}:</h3>
+                    <h3 class="lead">
+                        <i class="bi bi-exclamation-circle me-2"></i>
+                        {% trans "Change order status" %}:
+                    </h3>
                     {% if order_statuses %}
                         <div class="form-group">
                             <div class="controls">
@@ -151,7 +157,7 @@
                             </div>
                         </div>
                         <div class="flex-nowrap">
-                            <button type="submit" name="action" value="change_order_statuses" class="btn btn-primary" data-loading-text="{% trans 'Changing...' %}">
+                            <button type="submit" name="action" value="change_order_statuses" class="btn btn-outline-primary" data-loading-text="{% trans 'Changing...' %}">
                                 {% trans "Change status" %}
                             </button>
                         </div>

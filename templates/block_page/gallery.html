@@ -1,0 +1,77 @@
+
+
+{% load i18n %}
+{% load image_tags %}
+
+<div class="container container_show">
+    {% for product in products %}
+        {% with all_images=product.get_all_images %}
+            {# use length rather then count as the images get queried anyways #}
+            {% if all_images|length > 1 %}
+
+                <div class="myslider">
+                    <div id="myCarousel" class="carousel slide">
+                        <div class="carousel-inner">
+
+                            {% for image in all_images %}
+                                <figure class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    {% oscar_thumbnail image.original "440x" upscale=False as thumb %}
+                                    <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
+                                </figure>
+                            {% endfor %}
+
+                        <figcaption class="carousel_explanation">
+                            <h4 class="carousel_title_h">
+                                {{ product.title }}
+                            </h4>
+                            <p class="carousel_title_p">
+                                <!-- {{ object.body | safe| truncatewords:12 | linebreaks }} -->
+                                {{ product.description | safe }}
+                            </p>
+                        </figcaption>
+                        <ul class="carousel_perma_link">
+                            <li>
+                                <a class="perma_link page-link" href="#">{{ product.title }}</a>
+                            </li>
+                        </ul>
+
+                        </div>
+
+                        <ol class="carousel-indicators thumbnail">
+                            {% for image in all_images %}
+                                <li class="{% if forloop.first %}active{% endif %}" data-target="#myCarousel" data-slide-to="{{ forloop.counter0 }}">
+                                    {% oscar_thumbnail image.original "65x55" crop="center" as thumb %}
+                                    <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
+                                </li>
+                            {% endfor %}
+                        </ol>
+
+                        <ul class="pagination mt-2 carousel_nav">
+                            <li class="page-item">
+                                <span class="page-link">
+                                    <input type="button" class="form-control start-slide" value="start">
+                                </span>
+                            </li>
+                            <li class="page-item">
+                                <span class="page-link">
+                                    <input type="button" class="form-control pause-slide" value="pause">
+                                </span>
+                            </li>
+                            <li class="page-item">
+                                <span class="page-link">
+                                    <input type="button" class="form-control prev-slide" value="previous slide">
+                                </span>
+                            </li>
+                            <li class="page-item">
+                                <span class="page-link">
+                                    <input type="button" class="form-control next-slide" value="next slide">
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            {% endif %}
+        {% endwith %}
+    {% endfor %}
+</div>

@@ -22,7 +22,7 @@
 
 {% block dashboard_content %}
     <div class="card card-body bg-light">
-        <h2>{% trans "Shipping method" %}</h2>
+        <h2 class="lead">{% trans "Shipping method" %}</h2>
         <table class="table table-bordered">
             <tbody>
                 <tr>
@@ -49,15 +49,15 @@
         </table>
 
         <p>
-            <a id="edit_method" href="{% url 'dashboard:shipping-method-edit' pk=method.pk %}" class="btn btn-primary btn-sm">
-                {% trans 'Edit shipping method' %}
-            </a>
-            <a id="delete_method" href="{% url 'dashboard:shipping-method-delete' pk=method.pk %}" class="btn btn-danger btn-sm">
-                {% trans 'Delete shipping method' %}
-            </a>
+        <a class="btn btn-outline-primary btn-sm me-2" id="edit_method" href="{% url 'dashboard:shipping-method-edit' pk=method.pk %}">
+            {% trans 'Edit shipping method' %}
+        </a>
+        <a class="btn btn-danger btn-sm" id="delete_method" href="{% url 'dashboard:shipping-method-delete' pk=method.pk %}" class="btn btn-danger btn-sm">
+            {% trans 'Delete shipping method' %}
+        </a>
         </p>
 
-        <h2>{% trans "Weight bands" %}</h2>
+        <h2 class="lead">{% trans "Weight bands" %}</h2>
         {% if method.bands.all.count %}
             <table class="table table-bordered">
                 <thead>
@@ -73,7 +73,7 @@
                             <td>{{ band.weight_from|floatformat:3 }} - {{ band.weight_to|floatformat:3 }}</td>
                             <td>{{ band.charge|currency }}</td>
                             <td>
-                                <a id="edit_band_{{ band.id }}" href="{% url 'dashboard:shipping-method-band-edit' method_pk=band.method.pk pk=band.pk %}" class="btn btn-primary btn-sm">{% trans "Edit" %}</a>
+                                <a id="edit_band_{{ band.id }}" href="{% url 'dashboard:shipping-method-band-edit' method_pk=band.method.pk pk=band.pk %}" class="btn btn-outline-primary btn-sm me-2">{% trans "Edit" %}</a>
                                 <a id="delete_band_{{ band.id }}" href="{% url 'dashboard:shipping-method-band-delete' method_pk=band.method.pk pk=band.pk %}" class="btn btn-danger btn-sm">{% trans "Delete" %}</a>
                             </td>
                         </tr>
@@ -84,11 +84,11 @@
             <p>{% trans "No weight bands have been added yet." %}</p>
         {% endif %}
 
-        <h2>{% trans "Add a new weight band" %}</h2>
+        <h2 class="lead">{% trans "Add a new weight band" %}</h2>
         <form method="post">
             {% csrf_token %}
             {% include "oscar/dashboard/partials/form_fields.html" with form=form %}
-            <button type="submit" class="btn btn-primary" data-loading-text="{% trans 'Adding...' %}">{% trans 'Add weight band' %}</button>
+            <button type="submit" class="btn btn-outline-primary btn-sm" data-loading-text="{% trans 'Adding...' %}">{% trans 'Add weight band' %}</button>
         </form>
     </div>
 {% endblock %}

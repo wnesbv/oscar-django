@@ -78,4 +78,4 @@ const burst = function (info) {
 }
 
 burst({ selector: '.mbtn' });
-burst({ selector: '.btn.btn-primary' });
+burst({ selector: '.btn.btn-outline-primary' });

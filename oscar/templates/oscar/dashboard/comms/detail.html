@@ -34,8 +34,8 @@
                     <li class="active"><a href="#email_preview" data-toggle="tab">{% trans "Preview" %}</a></li>
                 </ul>
             {% else %}
-                <div class="table-header">
-                    <h2><i class="fas fa-envelope"></i> {% trans "Edit email" %}</h2>
+                <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+                    <h2 class="lead"><i class="bi bi-envelope me-2"></i>{% trans "Edit email" %}</h2>
                 </div>
             {% endif %}
 
@@ -43,8 +43,8 @@
             <div class="tab-pane {% if not preview %}active{% endif %}" id="email_form">
                 {% csrf_token %}
                 {% include 'oscar/dashboard/partials/form_field.html' with field=form.name %}
-                <div class="table-header">
-                    <h3>{% trans "Email content" %}</h3>
+                <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+                    <h3 class="lead">{% trans "Email content" %}</h3>
                 </div>
                 <div class="card card-body">
                     <p>{% trans "These fields are rendered using Django's template system." %}</p>
@@ -65,18 +65,18 @@
                 {% include 'oscar/dashboard/partials/form_field.html' with field=form.email_subject_template %}
                 {% include 'oscar/dashboard/partials/form_field.html' with field=form.email_body_template %}
                 {% include 'oscar/dashboard/partials/form_field.html' with field=form.email_body_html_template %}
-                <div class="table-header">
-                    <h3>{% trans "Preview" %}</h3>
+                <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+                    <h3 class="lead">{% trans "Preview" %}</h3>
                 </div>
                 <div class="card card-body">
                     {% if commtype.is_order_related %}
                         <p>{% trans "View a preview of this email using order:" %}</p>
                         {% include 'oscar/dashboard/partials/form_field.html' with field=form.preview_order_number %}
                     {% endif %}
-                    <button type="submit" class="btn btn-primary" name="show_preview" data-loading-text="{% trans 'Submitting...' %}">{% trans "View preview" %}</button>
+                    <button type="submit" class="btn btn-outline-primary" name="show_preview" data-loading-text="{% trans 'Submitting...' %}">{% trans "View preview" %}</button>
                     <p>{% trans "or send a preview to:" %}</p>
                     {% include 'oscar/dashboard/partials/form_field.html' with field=form.preview_email %}
-                    <button type="submit" class="btn btn-secondary" name="send_preview" data-loading-text="{% trans 'Sending...' %}">{% trans "Send preview email" %}</button>
+                    <button type="submit" class="btn btn-outline-secondary btn-sm" name="send_preview" data-loading-text="{% trans 'Sending...' %}">{% trans "Send preview email" %}</button>
                 </div>
             </div>
             <div class="tab-pane {% if preview %}active{% endif %}" id="email_preview">
@@ -98,7 +98,7 @@
                     </table>
                 </div>
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary" data-loading-text="{% trans 'Saving...' %}">{% trans "Save" %}</button>
+                    <button type="submit" class="btn btn-outline-primary" data-loading-text="{% trans 'Saving...' %}">{% trans "Save" %}</button>
                     {% trans "or" %} <a href="{% url 'dashboard:comms-list' %}">{% trans "cancel" %}</a>.
                 </div>
             </div>

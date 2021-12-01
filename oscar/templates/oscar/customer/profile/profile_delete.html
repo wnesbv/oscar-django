@@ -7,7 +7,7 @@
         {% csrf_token %}
         {% include "oscar/partials/form_fields.html" with style='horizontal' %}
         <div class="alert alert-warning">
-            <h3>{% trans "Warning" %}</h3>
+            <h3 class="lead">{% trans "Warning" %}</h3>
             {% blocktrans %}
                 This will delete all information about you from the site.  Deleting your profile cannot be
                 undone.

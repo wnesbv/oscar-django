@@ -19,19 +19,19 @@
 
         <ul class="list-group">
             <li class="list-group-item">
-                <a class="btn btn-primary btn-sm" href="{% url 'umessages_compose' %}">compose</a>
+                <a class="btn btn-outline-primary btn-sm" href="{% url 'umessages_compose' %}">compose</a>
             </li>
 
             {% for message in message_list %}
                 <li class="list-group-item">
                     {% if message.um_from_user == user %}
                         <span class="mr-2">to whom the message is addressed (see)</span>
-                        <a class="btn btn-primary btn-sm" href="{% url 'umessages_detail' message.um_to_user.username %}">
+                        <a class="btn btn-outline-primary btn-sm" href="{% url 'umessages_detail' message.um_to_user.username %}">
                             {{ message.um_to_user }}
                         </a>
                         {% get_unread_message_count_between user and message.um_to_user as unread_between_count %}
                             {% else %}
-                            <a class="btn btn-primary btn-sm" href="{% url 'umessages_detail' message.um_from_user.username %}">
+                            <a class="btn btn-outline-primary btn-sm" href="{% url 'umessages_detail' message.um_from_user.username %}">
                                 {{ message.um_from_user }}
                             </a>
                             {% get_unread_message_count_between user and message.um_from_user as unread_between_count %}

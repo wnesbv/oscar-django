@@ -1,13 +1,13 @@
+
 {% extends 'oscar/dashboard/layout.html' %}
 {% load currency_filters %}
 {% load i18n %}
 {% load django_tables2 %}
-
-{% block body_class %}{{ block.super }} orders{% endblock %}
-
 {% block title %}
     {% trans "Order statistics" %} | {{ block.super }}
 {% endblock %}
+
+{% block body_class %}{{ block.super }} orders{% endblock %}
 
 {% block breadcrumbs %}
     <nav aria-label="breadcrumb">
@@ -22,8 +22,11 @@
 {% block headertext %}{{ title }}{% endblock %}
 
 {% block dashboard_content %}
-    <div class="table-header">
-        <h3 class="load"><i class="fas fa-filter"></i> {% trans "Filter" %}</h3>
+    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+        <h4 class="lead">
+            <i class="bi bi-filter me-2"></i>
+            {% trans "Filter" %}
+        </h4>
     </div>
     <div class="card card-body bg-light">
         <form method="get" action="{% url 'dashboard:order-stats' %}" class="form-inline">
@@ -40,7 +43,7 @@
     </div>
 
     <table class="table table-striped table-bordered table-hover">
-        <caption><i class="fas fa-shopping-cart"></i> {% trans "Summary" %}</caption>
+        <caption><i class="bi bi-basket3 me-2"></i>{% trans "Summary" %}</caption>
         <tr>
             <th>{% trans "Total orders" %}</th>
             <td>{{ total_orders }}</td>
@@ -57,7 +60,7 @@
 
     {% if order_status_breakdown %}
         <table class="table table-striped table-bordered table-hover">
-            <caption><i class="fas fa-shopping-cart"></i> {% trans "Order status breakdown" %}</caption>
+            <caption><i class="bi bi-basket3 me-2"></i>{% trans "Order status breakdown" %}</caption>
             <tr>
                 <th>{% trans "Status" %}</th>
                 <th>{% trans "Frequency" %}</th>

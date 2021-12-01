@@ -22,8 +22,8 @@
     <div class="row">
         {% block user_general_info %}
             <div class="col-md-12">
-                <div class="table-header">
-                    <h2>{% trans "General" %}</h2>
+                <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+                    <h2 class="lead">{% trans "General" %}</h2>
                 </div>
                 <table class="table table-bordered">
                     <tr>
@@ -86,7 +86,9 @@
                             <td>
                                 <form id="password_reset_form" action="{% url 'dashboard:user-password-reset' pk=customer.id %}" method="post">
                                     {% csrf_token %}
-                                    <button type="submit" class="btn btn-primary" data-loading-text="{% trans 'Sending...' %}">{% trans 'Send password reset email' %}</button>
+                                    <button class="btn btn-outline-primary btn-sm" type="submit" data-loading-text="{% trans 'Sending...' %}">
+                                        {% trans 'Send password reset email' %}
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -148,7 +150,7 @@
 
                     {% block user_addresses %}
                         <div id="user_addresses" class="tab-pane fade" role="tabpanel">
-                            <h2>{% trans "Addresses" %}</h2>
+                            <h2 class="lead">{% trans "Addresses" %}</h2>
                             <div class="row">
                                 {% for address in customer.addresses.all %}
 

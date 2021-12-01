@@ -46,8 +46,8 @@
                 <div class="tab-content">
                     {% block option_details %}
                         <div class="tab-pane active" id="option_details">
-                            <div class="table-header">
-                                <h3>{% trans "Option details" %}</h3>
+                            <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+                                <h3 class="lead">{% trans "Option details" %}</h3>
                             </div>
                             <div class="card card-body bg-light option-details">
 
@@ -63,7 +63,7 @@
                                 {% if form.non_field_errors %}
                                     {% for error in form.non_field_errors %}
                                         <div class="alert alert-danger">
-                                            <span class="error-block"><i class="fas fa-exclamation"></i> {{ error }}</span>
+                                            <span class="error-block"><i class="bi bi-exclamation-lg"></i> {{ error }}</span>
                                         </div>
                                     {% endfor %}
                                 {% endif %}
@@ -81,12 +81,12 @@
         {% block fixed_actions_group %}
             <div class="fixed-actions-group">
                 <div class="form-actions">
-                    <div class="float-right">
+                    <div class="float-end">
                         <a href="#" {% if not is_popup %}onclick="window.history.go(-1);return false"{% else %}onclick="window.close();return false;"{% endif %}>
                             {% trans "Cancel" %}
                         </a>
                         {% trans "or" %}
-                        <button class="btn btn-primary" type="submit">
+                        <button class="btn btn-outline-primary" type="submit">
                             {% trans "Save" %}
                         </button>
                     </div>

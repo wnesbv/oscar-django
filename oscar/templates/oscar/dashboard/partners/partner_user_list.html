@@ -18,8 +18,8 @@
 
 {% block header %}
     <div class="container page-header">
-        <div class="btn-group float-right">
-            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+        <div class="btn-group float-end">
+            <a class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fas fa-plus-circle"></i>
                 {% trans 'Link a user' %}
             </a>
@@ -64,6 +64,6 @@
     {% endif %}
     {% include "oscar/dashboard/partials/pagination.html" %}
 
-    <h1>{% trans "Update details" %}</h1>
+    <h1 class="display-6">{% trans "Update details" %}</h1>
     {% include 'oscar/dashboard/partials/form.html' %}
 {% endblock dashboard_content %}

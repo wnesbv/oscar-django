@@ -6,11 +6,13 @@
     {% include "oscar/partials/nav_accounts.html" %}
 
     <div class="container">
-        <div class="jumbotron">
-            <h1>{% block error_heading %}{% trans 'Sorry!' %}{% endblock %}</h1>
+        <div class="h-100 p-5 bg-light border rounded-3">
+            <h1 class="display-6">
+                {% block error_heading %}{% trans 'Sorry!' %}{% endblock %}
+            </h1>
             {% block error_message %}{% endblock %}
             <p>
-                <a class="btn btn-outline-primary btn-sm" onclick="javascript:history.go(-1);">
+                <a class="btn btn-outline-primary btn-sm me-2" onclick="javascript:history.go(-1);">
                     {% trans 'Return to previous page' %}
                 </a>
                 <a class="btn btn-outline-primary btn-sm" href="{{ homepage_url }}">
@@ -19,4 +21,5 @@
             </p>
         </div>
     </div>
+
 {% endblock %}

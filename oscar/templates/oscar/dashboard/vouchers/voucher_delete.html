@@ -32,8 +32,8 @@
 {% endblock %}
 
 {% block dashboard_content %}
-    <div class="table-header">
-        <h2>{% trans "Voucher details" %}</h2>
+    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+        <h2 class="lead">{% trans "Voucher details" %}</h2>
     </div>
     <div class="card card-body bg-light">
         {% include "oscar/dashboard/vouchers/partials/voucher_details_table.html" %}

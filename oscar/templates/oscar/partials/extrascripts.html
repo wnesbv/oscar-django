@@ -1,4 +1,14 @@
-{% comment %}
-    This file exists so you can easily add your own Javascript without
-    having to fork layout.html etc. Instead, just override this file.
-{% endcomment %}
+
+
+<script type="text/javascript">
+    $(() => {
+        $('#product_gallery').carousel({ interval: 2000, pause: false });
+
+        $('#start-slide').click(() => {
+            $('#product_gallery').carousel('cycle');
+        });
+        $('#pause-slide').click(() => {
+            $('#product_gallery').carousel('pause');
+        });
+    });
+</script>

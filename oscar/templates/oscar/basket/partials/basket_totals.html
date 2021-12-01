@@ -7,7 +7,7 @@
         <tbody>
             {% block basket_header %}
                 <tr>
-                    <th colspan="2"><h3>{% trans "Basket" %}</h3></th>
+                    <th colspan="2"><h3 class="lead">{% trans "Basket" %}</h3></th>
                 </tr>
             {% endblock %}
 
@@ -39,7 +39,7 @@
 
                         {% if voucher_discounts %}
                             <tr>
-                                <th colspan="2"><h3>{% trans "Vouchers" %}</h3></th>
+                                <th colspan="2"><h3 class="lead">{% trans "Vouchers" %}</h3></th>
                             </tr>
                             {% for discount in voucher_discounts %}
                                 <tr>
@@ -95,7 +95,7 @@
 
                 <tr>
                     <th colspan="2">
-                        <h3>{% trans "Shipping" %}</h3>
+                        <h3 class="lead">{% trans "Shipping" %}</h3>
                         {% if shipping_methods|length > 1 and editable %}
                             <small>{% trans "Alternative shipping methods can be chosen during checkout" %}</small>
                         {% endif %}
@@ -161,7 +161,7 @@
 
                     <tr>
                         <th colspan="2">
-                            <h3>{% trans "Surcharges" %}</h3>
+                            <h3 class="lead">{% trans "Surcharges" %}</h3>
                         </th>
                     </tr>
                     {% for surcharge in surcharges %}
@@ -190,7 +190,7 @@
                     </tr>
                     <tr>
                         <th colspan="2">
-                            <h3>{% trans "Tax" %}</h3>
+                            <h3 class="lead">{% trans "Tax" %}</h3>
                         </th>
                     </tr>
                     <tr>
@@ -215,7 +215,7 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <th><h3>{% trans "Post order actions" %}</h3><small>{% trans "These will be applied once your order is placed." %}</small></th>
+                        <th><h3 class="lead">{% trans "Post order actions" %}</h3><small>{% trans "These will be applied once your order is placed." %}</small></th>
                         <td></td>
                     </tr>
                     {% for discount in basket.post_order_actions %}
@@ -235,7 +235,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <th class="total"><h3>{% trans "Order total" %}</h3></th>
+                    <th class="total"><h3 class="lead">{% trans "Order total" %}</h3></th>
                     <td class="total text-right">
                         <h3 class="price_color">
                             {% if order_total.is_tax_known %}

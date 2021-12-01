@@ -44,7 +44,7 @@
                             <td>
                                 <a href="{% url 'customer:notifications-detail' pk=notification.pk %}" class="btn btn-info btn-sm">{% trans 'View' %}</a>
                                 {% if list_type == 'inbox' %}
-                                    <a class="btn btn-success btn-sm" href="#" data-behaviours="archive">{% trans 'Archive' context 'verb' %}</a>
+                                    <a class="btn btn-outline-success btn-sm" href="#" data-behaviours="archive">{% trans 'Archive' context 'verb' %}</a>
                                 {% endif %}
                                 <a class="btn btn-danger btn-sm" href="#" data-behaviours="delete">{% trans 'Delete' %}</a>
                             </td>

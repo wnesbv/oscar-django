@@ -41,8 +41,8 @@
     {% if disallow %}
         <p>{% trans "Please make sure all Product Attributes are assigned to another Attribute Option Group before deletion." %}</p>
     {% else %}
-        <div class="table-header">
-            <h2>{% trans "Delete Attribute Option Group" %}</h2>
+        <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+            <h2 class="lead">{% trans "Delete Attribute Option Group" %}</h2>
         </div>
         <form method="post" class="card card-body">
             {% csrf_token %}

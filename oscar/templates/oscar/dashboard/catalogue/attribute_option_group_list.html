@@ -17,8 +17,8 @@
 
 {% block header %}
     <div class="container page-header">
-        <a href="{% url 'dashboard:catalogue-attribute-option-group-create' %}?{{ querystring }}" class="btn btn-primary float-right">
-            <i class="fas fa-plus-circle"></i> {% trans "Create new Attribute Option Group" %}
+        <a href="{% url 'dashboard:catalogue-attribute-option-group-create' %}?{{ querystring }}" class="btn btn-outline-primary float-end">
+            <i class="bi bi-plus-circle me-2"></i>{% trans "Create new Attribute Option Group" %}
         </a>
         <h1 class="display-6">{% trans "Attribute Option Group" %}</h1>
     </div>

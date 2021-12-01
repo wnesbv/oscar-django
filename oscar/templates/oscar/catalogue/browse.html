@@ -1,9 +1,9 @@
 
 {% extends "oscar/layout_2_col.html" %}
-{% load basket_tags %}
-{% load category_tags %}
-{% load product_tags %}
 {% load i18n %}
+{% load basket_tags %}
+{% load product_tags %}
+{% load category_tags %}
 
 {% block title %}
     {% if summary %}{{ summary }} |{% endif %} {{ block.super }}
@@ -14,7 +14,9 @@
 {% block breadcrumbs %}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ homepage_url }}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item">
+                <a href="{{ homepage_url }}">{% trans "Home" %}</a>
+            </li>
             <li class="breadcrumb-item active" aria-current="page">{{ summary }}</li>
         </ol>
     </nav>
@@ -23,7 +25,9 @@
 {% block column_left %}
     {% category_tree as tree_categories %}
     {% if tree_categories %}
-        <h4>{% trans "Show results for" %}</h4>
+        <h4 class="lead">
+            {% trans "Show results for" %}
+        </h4>
         <div class="side_categories shadow p-3 mb-2 bg-body rounded">
             <ul class="nav-list list-group list-group-flush">
 
@@ -54,7 +58,7 @@
     {% endif %}
 
     {% if has_facets %}
-        <h4>{% trans "Refine by" %}</h4>
+        <h3 class="lead">{% trans "Refine by" %}</h4>
         <div class="side_categories card card-body bg-light">
             {% for field, data in facet_data.items %}
                 {% if data.results %}
@@ -97,7 +101,7 @@
             {% endif %}
 
             {% if form %}
-                <div class="float-right">
+                <div class="float-end">
                     {% include "oscar/partials/form_field.html" with field=form.sort_by style='horizontal' %}
                 </div>
             {% endif %}

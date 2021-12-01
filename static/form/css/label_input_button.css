@@ -164,16 +164,16 @@
 
 /* material file button */
     a.mbtn,
-    a.btn.btn-primary{
+    a.btn.btn-outline-primary{
         color: #6C838C;
         background-color: #F2F6FA;
     }
-    .btn.btn-primary.btn-block{
+    .btn.btn-outline-primary.btn-block{
         color: #6C838C;
         background-color: #E7EAEE;
     }
     .mbtn,
-    .btn.btn-primary{
+    .btn.btn-outline-primary{
         box-sizing: border-box;
         height: 44px;
         margin: 0 .25em 0 0;
@@ -191,12 +191,12 @@
         transition: all .25s;
     }
     .mbtn:active,
-    .btn.btn-primary:active{
+    .btn.btn-outline-primary:active{
         opacity: .8;
         box-shadow: none;
     }
     .mbtn:hover,
-    .btn.btn-primary:hover{
+    .btn.btn-outline-primary:hover{
         opacity: .8;
     }
 

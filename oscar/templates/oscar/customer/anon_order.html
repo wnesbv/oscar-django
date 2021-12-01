@@ -10,15 +10,15 @@
 
 {% block content %}
     {% if order.status %}
-        <div class="sub-header">
-            <h3>{% trans 'Status' %}</h3>
+        <div class="shadow p-3 my-4 bg-body rounded">
+            <h3 class="lead">{% trans 'Status' %}</h3>
         </div>
         <p>{{ order.status }}</p>
     {% endif %}
 
     {% with address=order.shipping_address %}
-        <div class="sub-header">
-            <h3>{% trans 'Shipping address' %}</h3>
+        <div class="shadow p-3 my-4 bg-body rounded">
+            <h3 class="lead">{% trans 'Shipping address' %}</h3>
         </div>
         <table class="table table-striped table-bordered">
             <tr>
@@ -44,13 +44,13 @@
         </table>
     {% endwith %}
 
-    <div class="sub-header">
-        <h3>{% trans 'Shipping method' %}</h3>
+    <div class="shadow p-3 my-4 bg-body rounded">
+        <h3 class="lead">{% trans 'Shipping method' %}</h3>
     </div>
     <p>{{ order.shipping_method }}</p>
 
-    <div class="sub-header">
-        <h3>{% trans 'Order contents' %}</h3>
+    <div class="shadow p-3 my-4 bg-body rounded">
+        <h3 class="lead">{% trans 'Order contents' %}</h3>
     </div>
     {% csrf_token %}
     <table class="table table-striped table-bordered">
@@ -80,7 +80,7 @@
                 {% iffeature "reviews" %}
                     <td>
                         {% if line.product|is_review_permitted:user %}
-                            <a href="{% url 'catalogue:reviews-add' product_slug=line.product.slug product_pk=line.product.id %}" class="btn btn-primary btn-sm">{% trans 'Write a review' %}</a>
+                            <a href="{% url 'catalogue:reviews-add' product_slug=line.product.slug product_pk=line.product.id %}" class="btn btn-outline-primary btn-sm">{% trans 'Write a review' %}</a>
                         {% endif %}
                     </td>
                 {% endiffeature %}

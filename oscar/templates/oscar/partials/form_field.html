@@ -1,3 +1,4 @@
+
 {% load widget_tweaks %}
 
 {% if field.is_hidden %}
@@ -34,7 +35,10 @@
 
                     {% block errors %}
                         {% for error in field.errors %}
-                            <span class="error-block"><i class="fas fa-exclamation"></i> {{ error }}</span>
+                            <span class="error-block">
+                                <i class="bi bi-exclamation-triangle me-2"></i>
+                                {{ error }}
+                            </span>
                         {% endfor %}
                     {% endblock %}
 

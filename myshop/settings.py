@@ -161,6 +161,7 @@ WSGI_APPLICATION = "myshop.wsgi.application"
 
 
 # ...
+OSCAR_SHOP_TAGLINE = 'Shop Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 OSCAR_RECENTLY_VIEWED_PRODUCTS = 20
 OSCAR_ALLOW_ANON_CHECKOUT = True
 

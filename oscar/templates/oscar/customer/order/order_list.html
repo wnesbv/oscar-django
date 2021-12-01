@@ -8,6 +8,7 @@
     {% comment %}
         <link rel="stylesheet" href="{% static "oscar/js/bootstrap4-datetimepicker/tempusdominus-bootstrap-4.min.css" %}" />
     {% endcomment %}
+        <link rel="stylesheet" href="{% static "oscar/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" %}" />
 
 {% endblock %}
 
@@ -17,6 +18,7 @@
         <script src="{% static "oscar/js/bootstrap4-datetimepicker/moment-with-locales.min.js" %}"></script>
         <script src="{% static "oscar/js/bootstrap4-datetimepicker/tempusdominus-bootstrap-4.min.js" %}"></script>
     {% endcomment %}
+    <script src="{% static "oscar/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js" %}"></script>
 {% endblock %}
 
 
@@ -38,13 +40,13 @@
 
     {% if orders or form.is_bound %}
         <div class="card card-body bg-light">
-            <h2>{% trans "Filter" %}</h2>
+            <h2 class="lead">{% trans "Filter" %}</h2>
             <form method="get">
                 {% include "oscar/partials/form_fields.html" with form=form style='horizontal' %}
                 <div class="form-group row">
                     <div class="offset-sm-4 col-sm-8">
-                        <button type="submit" class="btn btn-primary" data-loading-text="{% trans 'Filtering...' %}">{% trans 'Filter results' %}</button>
-                        <a href="{% url 'customer:order-list' %}" class="btn btn-secondary">{% trans 'Reset' %}</a>
+                        <button type="submit" class="btn btn-outline-primary" data-loading-text="{% trans 'Filtering...' %}">{% trans 'Filter results' %}</button>
+                        <a href="{% url 'customer:order-list' %}" class="btn btn-outline-secondary btn-sm">{% trans 'Reset' %}</a>
                     </div>
                 </div>
             </form>
@@ -52,7 +54,7 @@
     {% endif %}
 
     {% if orders %}
-        <h2>{{ form.description }}</h2>
+        <h2 class="lead">{{ form.description }}</h2>
         <table class="table table-striped table-bordered">
             <tr>
                 <th>{% trans "Order number" %}</th>

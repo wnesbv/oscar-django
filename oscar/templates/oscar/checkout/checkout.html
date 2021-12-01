@@ -23,15 +23,15 @@
     <div class="row shipping-payment">
         {% block shipping_address %}
             <div class="col-sm-6">
-                <div class="sub-header">
-                    <h2>{% trans "Shipping" %}</h2>
+                <div class="shadow p-3 my-4 bg-body rounded">
+                    <h2 class="lead">{% trans "Shipping" %}</h2>
                 </div>
                 {% if shipping_address %}
                     <div class="card card-body bg-light">
-                        <h3>
+                        <h3 class="lead">
                           {% trans "Address" %}
                           {% block shipping_address_actions %}
-                            <a href="{% url 'checkout:shipping-address' %}" class="float-right">
+                            <a href="{% url 'checkout:shipping-address' %}" class="float-end">
                                 {% trans "Change" %}
                             </a>
                         {% endblock %}</h3>
@@ -42,7 +42,7 @@
                         </address>
 
                         {% if shipping_address.phone_number %}
-                            <h4>{% trans "Contact" %}</h4>
+                            <h3 class="lead">{% trans "Contact" %}</h4>
                             <p>
                                 {% trans "Phone" %}: {{ shipping_address.phone_number }}
                                 {% if guest_email %}
@@ -52,7 +52,7 @@
                         {% endif %}
 
                         {% if shipping_address.notes %}
-                            <h4>{% trans "Instructions" %}</h4>
+                            <h3 class="lead">{% trans "Instructions" %}</h4>
                             <p>{{ shipping_address.notes|linebreaks }}</p>
                         {% endif %}
                     </div>
@@ -60,10 +60,10 @@
 
                 {% if shipping_method %}
                     <div class="card card-body bg-light card card-body bg-light-info">
-                        <h3>
+                        <h3 class="lead">
                           {% trans "Shipping method" %}
                           {% block shipping_method_actions %}
-                            <a href="{% url 'checkout:shipping-method' %}" class="float-right">
+                            <a href="{% url 'checkout:shipping-method' %}" class="float-end">
                                 {% trans "Change" %}
                             </a>
                           {% endblock %}
@@ -82,13 +82,13 @@
         {# You will almost certainly want to override this block to provide a payment summary #}
         {% block payment_method %}
             <div class="col-sm-6">
-                <div class="sub-header">
-                    <h2>{% trans "Payment" %}</h2>
+                <div class="shadow p-3 my-4 bg-body rounded">
+                    <h2 class="lead">{% trans "Payment" %}</h2>
                 </div>
                 <div class="card card-body bg-light card card-body bg-light-success">
-                    <h3>
+                    <h3 class="lead">
                       {% trans "Payment" %}
-                      <a href="{% url 'checkout:payment-details' %}" class="float-right">
+                      <a href="{% url 'checkout:payment-details' %}" class="float-end">
                         {% trans "Change" %}
                       </a>
                     </h3>
@@ -99,14 +99,14 @@
     </div>
 
     {% block order_contents %}
-        <div class="sub-header">
+        <div class="shadow p-3 my-4 bg-body rounded">
             {% block order_contents_actions %}
-                <a href="{% url 'basket:summary' %}" class="float-right">
+                <a class="page-link float-end" href="{% url 'basket:summary' %}">
                     {% trans "Edit order contents" %}
                 </a>
             {% endblock %}
 
-            <h2>{% trans "Order contents" %}</h2>
+            <h2 class="display-6">{% trans "Order contents" %}</h2>
         </div>
         <div class="basket-title">
             <div class="row">
@@ -130,7 +130,7 @@
                         </div>
                     </div>
                     <div class="col-sm-7">
-                        <h3><a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></h3>
+                        <h3 class="lead"><a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></h3>
                         <span class="availability {{ session.availability.code }}">{{ session.availability.message }}</span>
                     </div>
                     <div class="col-sm-1 text-center">
@@ -152,8 +152,8 @@
         <div class="row">
             <div class="col-sm-6">&nbsp;</div>
             <div class="col-sm-6">
-                <div class="sub-header">
-                    <h2>{% trans 'Totals' %}</h2>
+                <div class="shadow p-3 my-4 bg-body rounded">
+                    <h2 class="lead">{% trans 'Totals' %}</h2>
                 </div>
                 {% include 'oscar/basket/partials/basket_totals.html' %}
             </div>

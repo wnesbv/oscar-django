@@ -1,3 +1,4 @@
+
 {% extends 'oscar/dashboard/layout.html' %}
 {% load currency_filters %}
 {% load sorting_tags %}
@@ -22,18 +23,22 @@
 
 {% block header %}
     <div class="container page-header">
-        <a href="{% url 'dashboard:voucher-create' %}" class="btn btn-primary float-right">
-            <i class="fas fa-plus-circle"></i> {% trans "Create new voucher" %}
+        <a class="btn btn-outline-primary btn-sm float-end" href="{% url 'dashboard:voucher-create' %}">
+            <i class="bi bi-plus-circle me-2"></i>
+            {% trans "Create new voucher" %}
         </a>
-        <h1>{% trans "Vouchers" %}</h1>
+        <h1 class="display-6">{% trans "Vouchers" %}</h1>
     </div>
 {% endblock header %}
 
 
 {% block dashboard_content %}
     {% block page_head %}
-        <div class="table-header">
-            <h3><i class="fas fa-search"></i> {% trans "Search" %}</h3>
+        <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+            <h3 class="lead">
+                <i class="bi bi-search me-2"></i>
+                {% trans "Search" %}
+            </h3>
         </div>
         <div class="card card-body bg-light">
             <form method="get" class="form-inline">
@@ -42,7 +47,7 @@
                         {% if field.is_hidden %}
                             {{ field }}
                         {% else %}
-                            <div class="form-group mr-2{% if field.errors %} error{% endif %}">
+                            <div class="form-group me-2{% if field.errors %} error{% endif %}">
                                 {{ field.label_tag }}
                                 {% render_field field class+='form-control' %}
                                 {% for error in field.errors %}
@@ -145,7 +150,7 @@
                                 {% block row_actions %}
                                     <div class="btn-toolbar">
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 {% trans "Actions" %}
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -163,9 +168,10 @@
                                                 {% endif %}
                                                 <a class="dropdown-item" href="{% url 'dashboard:voucher-delete' pk=voucher.id %}">
                                                     {% if not voucher.voucher_set %}
-                                                    {% trans "Delete" %}
-                                                    {% else %}
-                                                    {% trans "Delete from set" %}
+                                                        {% trans "Delete" %}
+
+                                                        {% else %}
+                                                        {% trans "Delete from set" %}
                                                     {% endif %}
                                                 </a>
                                             </div>

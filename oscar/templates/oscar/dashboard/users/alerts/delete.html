@@ -23,8 +23,8 @@
 {% endblock %}
 
 {% block dashboard_content %}
-    <div class="table-header">
-        <h2>{% blocktrans with id=alert.id %}Product alert #{{ id }}{% endblocktrans %}</h2>
+    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+        <h2 class="lead">{% blocktrans with id=alert.id %}Product alert #{{ id }}{% endblocktrans %}</h2>
     </div>
     <div class="card card-body bg-light">
         {% include 'oscar/dashboard/users/alerts/partials/alert.html' %}

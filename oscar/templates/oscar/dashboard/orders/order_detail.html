@@ -25,7 +25,10 @@
 {% block dashboard_content %}
     {% block customer_information %}
     <table class="table table-bordered table-hover">
-        <caption><i class="fas fa-user"></i> {% trans "Customer Information" %}</caption>
+        <caption>
+            <i class="bi bi-person-fill me-2"></i>
+            {% trans "Customer Information" %}
+        </caption>
         {% if order.guest_email %}
             <tr>
                 <th>{% trans "Name" %}</th>
@@ -54,7 +57,7 @@
 
     {% block order_information %}
     <table class="table table-striped table-bordered table-hover">
-        <caption><i class="fas fa-shopping-cart"></i> {% trans "Order information" %}</caption>
+        <caption><i class="bi bi-basket3 me-2"></i>{% trans "Order information" %}</caption>
         <tr>
             <th>{% trans "Order Total" %}</th>
             <th>{% trans "Date of purchase" %}</th>
@@ -73,8 +76,8 @@
     {% block additional_order_information %}
     {% endblock additional_order_information %}
 
-    <div class="sub-header">
-        <h2>{% trans "Order Details" %}</h2>
+    <div class="shadow p-3 my-4 bg-body rounded">
+        <h2 class="lead">{% trans "Order Details" %}</h2>
     </div>
 
     <div class="tabbable dashboard">
@@ -111,8 +114,8 @@
 
         <div class="tab-content">
             <div class="tab-pane fade {% if active_tab == 'lines' %}show active{% endif %}" id="lines" role="tabpanel">
-                <div class="table-header">
-                    <h3>{% trans "Items ordered" %}</h3>
+                <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+                    <h3 class="lead">{% trans "Items ordered" %}</h3>
                 </div>
                 <form id="order_lines_form" method="post" class="form-inline">
                     {% csrf_token %}
@@ -165,7 +168,7 @@
                                         <td class="text-right">{{ line.line_price_before_discounts_excl_tax|currency:order.currency }}</td>
                                         <td class="text-right">{{ line.line_price_before_discounts_incl_tax|currency:order.currency }}</td>
                                         <td>
-                                            <a href="{% url 'dashboard:order-line-detail' number=order.number line_id=line.id %}" class="btn btn-secondary">{% trans "View" %}</a>
+                                            <a href="{% url 'dashboard:order-line-detail' number=order.number line_id=line.id %}" class="btn btn-outline-secondary btn-sm">{% trans "View" %}</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -285,7 +288,7 @@
                     {% endcomment %}
                     {% block line_actions %}
                         <div class="card card-body bg-light">
-                            <h3>{% trans "With selected lines" %}:</h3>
+                            <h3 class="lead">{% trans "With selected lines" %}:</h3>
                             <div class="form-inline mb-sm-2">
                                 <div class="form-group">
                                     <div class="form-check">
@@ -346,7 +349,9 @@
                                 </div>
                             </div>
                             <div class="flex-nowrap">
-                                <button type="submit" class="btn btn-primary btn-sm">{% trans "Go!" %}</button>
+                                <button type="submit" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-check2"></i>
+                                </button>
                             </div>
                         </div>
                     {% endblock line_actions %}
@@ -356,12 +361,15 @@
                     {% csrf_token %}
                     {% block order_actions %}
                         <div class="card card-body bg-light">
-                            <h3><i class="fas fa-exclamation-triangle"></i> {% trans "Change order status" %}:</h3>
+                            <h3 class="lead">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                {% trans "Change order status" %}:
+                            </h3>
                             {% if order_status_form.has_choices %}
                                 {% include "oscar/dashboard/partials/form_fields.html" with form=order_status_form %}
                                 <input type="hidden" value="change_order_status" name="order_action" />
                                 <div class="flex-nowrap">
-                                    <button type="submit" class="btn btn-primary btn-sm">{% trans "Change status" %}</button>
+                                    <button type="submit" class="btn btn-outline-primary btn-sm">{% trans "Change status" %}</button>
                                 </div>
                             {% else %}
                                 {% trans "This order can't have its status changed." %}
@@ -371,8 +379,8 @@
                 </form>
 
                 {% block order_status_changes %}
-                    <div class="table-header">
-                        <h3>{% trans "Status Changes" %}</h3>
+                    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+                        <h3 class="lead">{% trans "Status Changes" %}</h3>
                     </div>
                     {% with status_changes=order.status_changes.all %}
                         <table class="table table-striped table-bordered table-hover">
@@ -405,8 +413,8 @@
                 {% endblock %}
 
                 {% block shipping_events %}
-                    <div class="table-header">
-                        <h3>{% trans "Shipping Events" %}</h3>
+                    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+                        <h3 class="lead">{% trans "Shipping Events" %}</h3>
                     </div>
                     {% with events=order.shipping_events.all %}
                         <table class="table table-striped table-bordered table-hover">
@@ -451,7 +459,7 @@
                 {% endblock %}
 
                 {% block payment_events %}
-                    <div class="table-header">
+                    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
                         <h3 >{% trans "Payment Events" %}</h3>
                     </div>
                     {% with events=order.payment_events.all %}
@@ -495,8 +503,8 @@
 
             <div class="tab-pane fade {% if active_tab == 'shipping' %}show active{% endif %}" id="shipping" role="tabpanel">
                 {% block tab_shipping %}
-                    <div class="table-header">
-                        <h3>{% trans "Shipping" %}</h3>
+                    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+                        <h3 class="lead">{% trans "Shipping" %}</h3>
                     </div>
                     <table class="table table-striped table-bordered table-hover">
                         <tbody>
@@ -522,7 +530,7 @@
                                     {% for field in order.shipping_address.active_address_fields %}
                                         {{ field }}<br/>
                                     {% endfor %}
-                                    <a class="btn btn-secondary" href="{% url 'dashboard:order-shipping-address' order.number %}">
+                                    <a class="btn btn-outline-secondary btn-sm" href="{% url 'dashboard:order-shipping-address' order.number %}">
                                         {% trans "Update" %}
                                     </a>
                                 </td>
@@ -544,8 +552,8 @@
                 {% block tab_payment %}
 
                     {% if order.billing_address %}
-                        <div class="sub-header">
-                            <h3 >{% trans "Billing address" %}</h3>
+                        <div class="shadow p-3 my-4 bg-body rounded">
+                            <h3 class="lead">{% trans "Billing address" %}</h3>
                         </div>
                         <p>
                             {% for field in order.billing_address.active_address_fields %}
@@ -555,8 +563,8 @@
                     {% endif %}
 
                     {% with sources=order.sources.all %}
-                        <div class="table-header">
-                            <h3 >{% trans "Payment sources" %}</h3>
+                        <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+                            <h3 class="lead">{% trans "Payment sources" %}</h3>
                         </div>
                         {% if sources %}
                             <table class="table table-striped table-bordered table-hover">
@@ -590,8 +598,8 @@
 
                     {% block payment_transactions %}
                         {% if payment_transactions %}
-                            <div class="table-header">
-                                <h3>{% trans "Transactions" %}</h3>
+                            <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+                                <h3 class="lead">{% trans "Transactions" %}</h3>
                             </div>
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
@@ -625,8 +633,8 @@
                 {% block tab_discounts %}
 
                     {% with discounts=order.discounts.all %}
-                        <div class="table-header">
-                            <h3>{% trans "Discounts" %}</h3>
+                        <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+                            <h3 class="lead">{% trans "Discounts" %}</h3>
                         </div>
                         {% if discounts %}
                             <table class="table table-striped table-bordered table-hover">
@@ -673,8 +681,8 @@
 
             <div class="tab-pane fade {% if active_tab == 'notes' %}show active{% endif %}" id="notes" role="tabpanel">
                 {% block tab_notes %}
-                    <div class="table-header">
-                        <h3>{% trans "Notes" %}</h3>
+                    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+                        <h3 class="lead">{% trans "Notes" %}</h3>
                     </div>
                     {% with notes=order.notes.all %}
                         <table class="table table-striped table-bordered table-hover">
@@ -695,7 +703,7 @@
                                         <td>
                                             {% if note.is_editable %}
                                                 <a href="{% url 'dashboard:order-detail-note' number=order.number note_id=note.id %}#notes" class="btn btn-info">{% trans "Edit" %}</a>
-                                                <form method="post" class="float-left m-0">
+                                                <form method="post" class="float-start m-0">
                                                     {% csrf_token %}
                                                     <input type="hidden" name="order_action" value="delete_note" />
                                                     <input type="hidden" name="note_id" value="{{ note.id }}" />
@@ -718,7 +726,7 @@
                         <input type="hidden" value="save_note" name="order_action" />
                         {% include "oscar/dashboard/partials/form_fields.html" with form=note_form %}
                         <div class="form-actions">
-                            <input type="submit" value="{% trans "Save note" %}" class="btn btn-primary" />
+                            <input type="submit" value="{% trans "Save note" %}" class="btn btn-outline-primary" />
                             {% trans "Notes are only editable for 5 minutes after being saved." %}
                         </div>
                     </form>

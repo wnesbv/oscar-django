@@ -1,7 +1,7 @@
 
+{% load i18n %}
 {% load basket_tags %}
 {% load display_tags %}
-{% load i18n %}
 {% load purchase_info_tags %}
 
 {% purchase_info_for_product request product as session %}
@@ -9,28 +9,28 @@
 {% if session.availability.is_available_to_buy %}
     {% basket_form request product as basket_form %}
 
-    <form id="add_to_basket_form" action="{% url 'basket:add' pk=product.pk  %}" method="post" class="add-to-basket mb-0">
-        {% csrf_token %}
-        {% include "oscar/partials/form_fields.html" with form=basket_form %}
-        <button class="btn btn-outline-primary btn-sm w-100" type="submit" value="{% trans "Add to basket" %}" data-loading-text="{% trans 'Adding...' %}">
-            {% trans "Add to basket" %}
-        </button>
-    </form>
+        <form class="add-to-basket mb-0" id="add_to_basket_form" action="{% url 'basket:add' pk=product.pk  %}" method="post">
+            {% csrf_token %}
+            {% include "oscar/partials/form_fields.html" with form=basket_form %}
+            <button class="btn btn-outline-primary btn-sm mt-2" type="submit" value="{% trans "Add to basket" %}" data-loading-text="{% trans 'Adding...' %}">
+                {% trans "Add to basket" %}
+            </button>
+        </form>
 
-    {% iffeature "wishlists" %}
-        {% include "oscar/catalogue/partials/add_to_wishlist.html" %}
-    {% endiffeature %}
+        {% iffeature "wishlists" %}
+            {% include "oscar/catalogue/partials/add_to_wishlist.html" %}
+        {% endiffeature %}
 
     {% else %}
     {% if has_active_alert %}
         <p>{% trans "You have an active stock alert for this product." %}</p>
 
         {% else %}
-        <form id="alert_form" method="post" action="{% url 'customer:alert-create' pk=product.id %}" class="add-to-basket mb-0">
+        <form class="add-to-basket mb-0" id="alert_form" method="post" action="{% url 'customer:alert-create' pk=product.id %}">
             {% csrf_token %}
             <p>{% trans "You can get an email alert when this product is back in stock." %}</p>
             {% include "oscar/partials/form_fields.html" with form=alert_form %}
-            <button type="submit" class="btn btn-lg btn-info w-100" data-loading-text="{% trans 'Submitting...' %}">{% trans "Notify me" %}</button>
+            <button type="submit" class="btn btn-outline-info btn-sm" data-loading-text="{% trans 'Submitting...' %}">{% trans "Notify me" %}</button>
         </form>
     {% endif %}
 

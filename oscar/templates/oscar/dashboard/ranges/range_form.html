@@ -1,11 +1,11 @@
+
 {% extends 'oscar/dashboard/layout.html' %}
 {% load i18n %}
+{% block title %}
+    {{ title }} {% trans "ranges form" %} {{ block.super }}
+{% endblock %}
 
 {% block body_class %}{{ block.super }} create-page{% endblock %}
-
-{% block title %}
-    {{ title }} | {% trans "Ranges" %} | {{ block.super }}
-{% endblock %}
 
 {% block breadcrumbs %}
     <nav aria-label="breadcrumb">
@@ -24,7 +24,7 @@
 {% endblock %}
 
 {% block headertext %}
-    {% if range %}{{ range.name }}{% else %}{% trans "Create new range" %}{% endif %}
+    {% if range %}{{ range.name }}{% else %}{% trans "Create new range (form)" %}{% endif %}
 {% endblock %}
 
 {% block dashboard_content %}
@@ -33,11 +33,16 @@
         {% include "oscar/dashboard/partials/form_fields.html" with form=form %}
         {% block form_actions %}
             <div class="form-actions">
-                <button class="btn btn-primary" type="submit" data-loading-text="{% trans 'Saving...' %}">{% trans "Save" %}</button> {% trans "or" %}
-                {# This is an input so we distinguish between which button was pressed #}
-                <input class="btn btn-primary" type="submit" name="action" value="{% trans "Save and edit products" %}"/>
+                <button class="btn btn-outline-primary btn-sm me-2" type="submit" data-loading-text="{% trans 'Saving...' %}">
+                    {% trans "Save" %}
+                </button>
                 {% trans "or" %}
-                <a href="{% url 'dashboard:range-list' %}">{% trans "cancel" %}</a>
+                {# This is an input so we distinguish between which button was pressed #}
+                <input class="btn btn-outline-primary btn-sm ms-2" type="submit" name="action" value="{% trans "Save and edit products" %}"/>
+                {% trans "or" %}
+                <a class="btn btn-outline-secondary btn-sm ms-2" href="{% url 'dashboard:range-list' %}">
+                    {% trans "cancel" %}
+                </a>
             </div>
         {% endblock form_actions %}
     </form>

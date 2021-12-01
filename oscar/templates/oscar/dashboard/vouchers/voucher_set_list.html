@@ -18,10 +18,11 @@
 
 {% block header %}
     <div class="container page-header">
-        <a href="{% url 'dashboard:voucher-set-create' %}" class="btn btn-primary float-right">
-            <i class="fas fa-plus-circle"></i> {% trans "Create new voucher set" %}
+        <a class="btn btn-outline-primary btn-sm float-end" href="{% url 'dashboard:voucher-set-create' %}">
+            <i class="bi bi-plus-circle me-2"></i>
+            {% trans "Create new voucher set" %}
         </a>
-        <h1>{% trans "Voucher sets" %}</h1>
+        <h1 class="display-6">{% trans "Voucher sets" %}</h1>
     </div>
 {% endblock header %}
 
@@ -61,7 +62,7 @@
                 <td>
                     <div class="btn-toolbar">
                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {% trans "Actions" %}
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">

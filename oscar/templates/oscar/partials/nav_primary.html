@@ -9,7 +9,7 @@
 <nav class="{% block nav_classes %}navbar navbar-expand-lg navbar-light bg-light shadow p-2 my-2 rounded{% endblock %}">
     <div class="container-fluid">
         {% block navbar_toggler %}
-            <a class="navbar-brand" href="/">Navbar</a>
+            <a class="navbar-brand" href="{% url 'catalogue:index' %}">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>

@@ -31,11 +31,11 @@
     <div class="row shipping-payment">
         <div class="col-sm-6">
             {% block shipping_info %}
-                <div class="sub-header">
-                    <h2>{% trans "Shipping" %}</h2>
+                <div class="shadow p-3 my-4 bg-body rounded">
+                    <h2 class="lead">{% trans "Shipping" %}</h2>
                 </div>
                 <div class="card card-body bg-light">
-                    <h3>{% trans "Address" %}</h3>
+                    <h3 class="lead">{% trans "Address" %}</h3>
                     {% if order.shipping_address %}
                         <address>
                             {% for field in order.shipping_address.active_address_fields %}
@@ -44,7 +44,7 @@
                         </address>
 
                         {% if order.shipping_address.phone_number %}
-                            <h4>{% trans "Contact" %}</h4>
+                            <h3 class="lead">{% trans "Contact" %}</h4>
                             <p>
                                 {% trans "Phone" %}: {{ order.shipping_address.phone_number }}
                                 {% if order.guest_email %}
@@ -54,7 +54,7 @@
                         {% endif %}
 
                         {% if order.shipping_address.notes %}
-                            <h4>{% trans "Instructions" %}</h4>
+                            <h3 class="lead">{% trans "Instructions" %}</h4>
                             <p>{{ order.shipping_address.notes|linebreaks }}</p>
                         {% endif %}
                     {% else %}
@@ -63,7 +63,7 @@
                 </div>
 
                 <div class="card card-body bg-light">
-                    <h3>{% trans "Shipping method" %}</h3>
+                    <h3 class="lead">{% trans "Shipping method" %}</h3>
                     <p>{{ order.shipping_method }}</p>
                 </div>
             {% endblock %}
@@ -71,11 +71,11 @@
 
         <div class="col-sm-6">
             {% block payment_info %}
-                <div class="sub-header">
-                    <h2>{% trans "Payment" %}</h2>
+                <div class="shadow p-3 my-4 bg-body rounded">
+                    <h2 class="lead">{% trans "Payment" %}</h2>
                 </div>
                 <div class="card card-body bg-light">
-                    <h3>{% trans "Payment" %}</h3>
+                    <h3 class="lead">{% trans "Payment" %}</h3>
                     {% for source in order.sources.all %}
                         <p>
                         {% if source.reference %}
@@ -95,7 +95,7 @@
                     {% endfor %}
 
                     {% if order.billing_address %}
-                        <h4>{% trans "Billing address" %}</h4>
+                        <h3 class="lead">{% trans "Billing address" %}</h4>
                         <address>
                             {% for field in order.billing_address.active_address_fields %}
                                 {{ field }}<br/>
@@ -109,8 +109,8 @@
     </div>
 
     {% block order_contents %}
-        <div class="sub-header">
-            <h2>{% trans "Order contents" %}</h2>
+        <div class="shadow p-3 my-4 bg-body rounded">
+            <h2 class="lead">{% trans "Order contents" %}</h2>
         </div>
 
         <div class="basket-title">
@@ -135,7 +135,7 @@
                         </div>
                     </div>
                     <div class="col-sm-7">
-                        <h3><a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></h3>
+                        <h3 class="lead"><a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></h3>
                         {% if line.upc %}<p>{{ line.upc }}</p>{% endif %}
                     </div>
                     <div class="col-sm-1 text-center">
@@ -158,8 +158,8 @@
             <div class="row">
                 <div class="col-sm-6">&nbsp;</div>
                 <div class="col-sm-6">
-                    <div class="sub-header">
-                        <h2>{% trans 'Totals' %}</h2>
+                    <div class="shadow p-3 my-4 bg-body rounded">
+                        <h2 class="lead">{% trans 'Totals' %}</h2>
                     </div>
                     {% include 'oscar/order/partials/basket_totals.html' %}
                 </div>
@@ -170,11 +170,11 @@
 
     {% block order_tracking %}
         {% if not order.user %}
-            <div class="sub-header">
-                <h2>{% trans "Tracking your order" %}</h2>
+            <div class="shadow p-3 my-4 bg-body rounded">
+                <h2 class="lead">{% trans "Tracking your order" %}</h2>
             </div>
             <p>{% trans "You can track the status of your order" %}
-                <a class="btn btn-primary" href="{% url 'customer:anon-order' order_number=order.number hash=order.verification_hash %}">{% trans "View order status" %}</a>.</p>
+                <a class="btn btn-outline-primary" href="{% url 'customer:anon-order' order_number=order.number hash=order.verification_hash %}">{% trans "View order status" %}</a>.</p>
         {% endif %}
     {% endblock %}
 
@@ -183,10 +183,10 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-sm-4">
-                    <p><a onclick="window.print()" href="#" class="btn btn-primary btn-block btn-lg">{% trans "Print this page" %}</a></p>
+                    <p><a onclick="window.print()" href="#" class="btn btn-outline-primary btn-block btn-lg">{% trans "Print this page" %}</a></p>
                 </div>
                 <div class="col-sm-4 offset-sm-4">
-                    <p><a href="{{ homepage_url }}" class="btn btn-primary btn-block btn-lg">{% trans "Continue shopping" %}</a></p>
+                    <p><a href="{{ homepage_url }}" class="btn btn-outline-primary btn-block btn-lg">{% trans "Continue shopping" %}</a></p>
                 </div>
             </div>
         </div>

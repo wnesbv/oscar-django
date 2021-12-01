@@ -1,6 +1,8 @@
-{% load basket_tags %}
+
 {% load i18n %}
+{% load basket_tags %}
 {% load purchase_info_tags %}
+
 
 {% purchase_info_for_product request product as session %}
 
@@ -9,8 +11,13 @@
     <form action="{% url 'basket:add' pk=product.pk %}" method="post">
         {% csrf_token %}
         {{ basket_form.as_p }}
-        <button type="submit" class="btn btn-primary btn-block" data-loading-text="{% trans 'Adding...' %}">{% trans "Add to basket" %}</button>
+        <button class="btn btn-outline-primary btn-sm" type="submit" data-loading-text="{% trans 'Adding...' %}">
+            {% trans "Add to basket" %}
+        </button>
     </form>
-{% else %}
-    <span class="btn btn-secondary btn-block disabled">{% trans "Add to basket" %}</span>
+
+    {% else %}
+    <span class="btn btn-outline-secondary btn-sm disabled">
+        {% trans "Add to basket" %}
+    </span>
 {% endif %}

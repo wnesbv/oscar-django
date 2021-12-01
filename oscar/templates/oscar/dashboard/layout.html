@@ -13,75 +13,82 @@
 
 {% block extrastyles %}
     {{ block.super }}
+    <link rel="stylesheet" href="{% static "oscar/js/select2/select2.min.css" %}" />
+    <link rel="stylesheet" href="{% static "oscar/css/select2-bootstrap.min.css" %}" />
+    <link rel="stylesheet" href="{% static "oscar/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" %}" />
 {% endblock %}
 
 {% block layout %}
 
     <div class="container shadow p-2 mb-3 rounded">
-    {% block navbar %}
-        <nav class="navbar-accounts navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">{{ shop_name }}</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top_nav_bar" aria-controls="top_nav_bar" aria-expanded="false" aria-label="Toggle navigation">
+        {% block navbar %}
+            <nav class="navbar-accounts navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">{{ shop_name }}</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top_nav_bar" aria-controls="top_nav_bar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="top_nav_bar">
+                        <ul class="navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#">
+                                    {% trans "Welcome" %} <em>{{ user.get_full_name|default:request.user.email }}</em>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ homepage_url }}"><i class="bi bi-house-fill me-2"></i>
+                                {% trans "Return to site" %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'customer:summary' %}"><i class="bi bi-person-fill me-2"></i>
+                                {% trans "Account" %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard:logout' %}"><i class="fas fa-sign-out-alt me-2"></i>
+                                {% trans "Log out" %}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        {% endblock navbar %}
+
+        {% block dashboard_nav %}
+            {% dashboard_navigation user as nav_items %}
+            <nav class="navbar-primary navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#bottom_nav_bar" aria-controls="bottom_nav_bar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="top_nav_bar">
-                    <ul class="navbar-nav mr-auto"></ul>
+                <div class="collapse navbar-collapse" id="bottom_nav_bar">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">
-                                {% trans "Welcome" %} <em>{{ user.get_full_name|default:request.user.email }}</em>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ homepage_url }}"><i class="fas fa-home"></i> {% trans "Return to site" %}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'customer:summary' %}"><i class="fas fa-user"></i> {% trans "Account" %}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'dashboard:logout' %}"><i class="fas fa-sign-out-alt"></i> {% trans "Log out" %}</a>
-                        </li>
+                        {% for item in nav_items %}
+                            <li class="nav-item {% if item.has_children %}dropdown{% endif %}">
+                                <a class="nav-link {% if item.has_children %}dropdown-toggle{% endif %}" href="{% if item.is_heading %}#{% else %}{{ item.url }}{% endif %}" {% if item.has_children %}id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"  aria-expanded="false"{% endif %}>
+                                    {% if item.icon %}<i class="{{ item.icon }}"></i>{% endif %}
+                                    {{ item.label }}
+                                </a>
+
+                                {% if item.has_children %}
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        {% for subitem in item.children %}
+                                            <a class="dropdown-item" href="{{ subitem.url }}">
+                                                {% if subitem.icon %}<i class="{{ subitem.icon }}"></i>{% endif %}
+                                                {{ subitem.label }}
+                                            </a>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
-            </div>
-        </nav>
-    {% endblock navbar %}
-
-    {% block dashboard_nav %}
-        {% dashboard_navigation user as nav_items %}
-        <nav class="navbar-primary navbar navbar-expand-lg navbar-light bg-light">
-            <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#bottom_nav_bar" aria-controls="bottom_nav_bar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="bottom_nav_bar">
-                <ul class="navbar-nav">
-                    {% for item in nav_items %}
-                        <li class="nav-item {% if item.has_children %}dropdown{% endif %}">
-                            <a class="nav-link {% if item.has_children %}dropdown-toggle{% endif %}" href="{% if item.is_heading %}#{% else %}{{ item.url }}{% endif %}" {% if item.has_children %}id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"  aria-expanded="false"{% endif %}>
-                                {% if item.icon %}<i class="{{ item.icon }}"></i>{% endif %}
-                                {{ item.label }}
-                            </a>
-
-                            {% if item.has_children %}
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    {% for subitem in item.children %}
-                                        <a class="dropdown-item" href="{{ subitem.url }}">
-                                            {% if subitem.icon %}<i class="{{ subitem.icon }}"></i>{% endif %}
-                                            {{ subitem.label }}
-                                        </a>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </nav>
-    {% endblock %}
+            </nav>
+        {% endblock %}
     </div>
+
     <div class="container-fluid">
         <div class="container">
         {% block breadcrumbs %}
@@ -114,17 +121,31 @@
 
 {# Local scripts #}
 {% block scripts %}
-    <!-- Bootstrap -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <!-- Oscar -->
+
 <script src="{% static "oscar/js/oscar/ui.js" %}"></script>
 {% endblock %}
 
 {% block extrascripts %}
 {{ block.super }}
+    {#  #}
+    <script src="{% static "oscar/js/mousewheel/jquery.mousewheel.js" %}"></script>
+    {% comment %}
+    <script src="{% static "oscar/js/bootstrap-datetimepicker/moment-with-locales.min.js" %}"></script>
+    <script src="{% static "oscar/js/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.js" %}"></script>
+    {% endcomment %}
 
-<script src="{% static 'oscar/js/oscar/dashboard.js' %}"></script>
-<script src="{% static 'oscar/js/oscar/RelatedObjectLookups.js' %}"></script>
+    <script src="{% static "oscar/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js" %}"></script>
+
+    <script src="{% static "oscar/js/inputmask/jquery.inputmask.min.js" %}"></script>
+    <script src="{% static "oscar/js/select2/select2.min.js" %}"></script>
+    <script src="{% static "oscar/js/jquery-sortable/jquery-sortable-min.js" %}"></script>
+    {#  #}
+    <script src="{% static 'oscar/js/oscar/dashboard.js' %}"></script>
+    <script src="{% static 'oscar/js/oscar/RelatedObjectLookups.js' %}"></script>
+    <script src="{% static 'oscar/js/tinymce/tinymce.min.js' %}"></script>
+    <script src="{% static 'oscar/js/tinymce/jquery.tinymce.min.js' %}"></script>
 {% endblock %}
 
 {% block onbodyload %}

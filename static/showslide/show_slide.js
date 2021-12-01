@@ -1,31 +1,28 @@
-
-
-$(document).ready(function(){
-    "use strict";
+$(document).ready(() => {
     // Initializes the carousel
-    $(".start-slide").click(function(){
-        $("#myCarousel").carousel('cycle');
+    $('.start-slide').click(() => {
+        $('#myCarousel').carousel('cycle');
     });
     // Stops the carousel
-    $(".pause-slide").click(function(){
-        $("#myCarousel").carousel('pause');
+    $('.pause-slide').click(() => {
+        $('#myCarousel').carousel('pause');
     });
     // Cycles to the previous item
-    $(".prev-slide").click(function(){
-        $("#myCarousel").carousel('prev');
+    $('.prev-slide').click(() => {
+        $('#myCarousel').carousel('prev');
     });
     // Cycles to the next item
-    $(".next-slide").click(function(){
-        $("#myCarousel").carousel('next');
+    $('.next-slide').click(() => {
+        $('#myCarousel').carousel('next');
     });
     // Cycles the carousel to a particular frame
-    $(".slide-one").click(function(){
-        $("#myCarousel").carousel(0);
+    $('.slide-one').click(() => {
+        $('#myCarousel').carousel(0);
     });
-    $(".slide-two").click(function(){
-        $("#myCarousel").carousel(1);
+    $('.slide-two').click(() => {
+        $('#myCarousel').carousel(1);
     });
-    $(".slide-three").click(function(){
-        $("#myCarousel").carousel(2);
+    $('.slide-three').click(() => {
+        $('#myCarousel').carousel(2);
     });
 });

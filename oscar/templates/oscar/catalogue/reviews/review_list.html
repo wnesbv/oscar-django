@@ -2,7 +2,6 @@
 
 {% load history_tags %}
 {% load i18n %}
-
 {% block title %}
     {% trans "All reviews" %} | {{ product.title }} | {{ block.super }}
 {% endblock %}
@@ -40,9 +39,10 @@
         {% if reviews %}
             <form method="get" class="form-inline">
                 {% include "oscar/partials/form_fields_inline.html" with form=form %}
-                <button type="submit" class="btn btn-secondary">{% trans "Go" %}</button>
+                <button type="submit" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-check2"></i>
+                </button>
             </form>
-
             <hr>
 
             {% for review in reviews %}

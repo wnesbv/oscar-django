@@ -21,16 +21,19 @@
 
 {% block header %}
     <div class="container page-header">
-        <a href="{% url 'dashboard:page-create' %}" class="btn btn-primary float-right">
-            <i class="fas fa-plus-circle"></i> {% trans "Create new page" %}
+        <a href="{% url 'dashboard:page-create' %}" class="btn btn-outline-primary float-end">
+            <i class="bi bi-plus-circle me-2"></i>{% trans "Create new page" %}
         </a>
         <h1 class="display-6">{% trans "Pages" %}</h1>
     </div>
 {% endblock header %}
 
 {% block dashboard_content %}
-    <div class="table-header">
-        <h3 class="lead"><i class="fas fa-search"></i> {% trans "Search" %}</h3>
+    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+        <h3 class="lead">
+            <i class="bi bi-search me-2"></i>
+            {% trans "Search" %}
+        </h3>
     </div>
     <div class="card card-body">
         <form method="get" class="form-inline">
@@ -46,8 +49,8 @@
         </form>
     </div>
 
-    <div class="table-header">
-        <h2><i class="fas fa-file"></i> {{ queryset_description }}</h2>
+    <div class="container list-group list-group-horizontal justify-content-between shadow p-3 mb-4 bg-light rounded">
+        <h2 class="lead"><i class="fas fa-file"></i> {{ queryset_description }}</h2>
     </div>
 
 
@@ -70,7 +73,7 @@
                             <td>
                                 <div class="btn-toolbar">
                                     <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             {% trans "Actions" %}
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">

@@ -1,0 +1,68 @@
+
+{# block_page #}
+{% block showslide_block %}
+
+    <div class="container myslider">
+         <div id="myCarousel" class="carousel slide">
+            <div class="carousel-inner">
+                {% if showslide_list %}
+                    {% for slide in showslide_list %}
+                        <figure class="carousel-item {% if forloop.first %}active{% endif %}">
+
+                            <picture>
+                                <source media="(max-width: 900px)" srcset="{{ slide.image_800.url }}">
+                                <img src="{{ slide.slide_photo.url }}" alt="{{ slide.name }}">
+                            </picture>
+
+                            <figcaption class="carousel_explanation">
+                                <article class="carousel_title">
+                                    {# {{ slide.body | safe| truncatewords:12 | linebreaks }} #}
+                                    <h4 class="carousel_title_h lead shadow p-3 mb-4 bg-body rounded">
+                                        {{ slide.name }}
+                                    </h4>
+                                    <small class="shadow p-3 mb-4 bg-body rounded">
+                                        {{ slide.specific_explanation }}
+                                    </small>
+                                    <div class="slide_body shadow p-3 mb-4 bg-body rounded">
+                                    {{ slide.paragraph | safe | truncatewords:44 }}
+                                    </div>
+                                </article>
+                                <a class="perma_link page-link" href="#">{{ slide.name }}</a>
+                            </figcaption>
+                        </figure>
+                    {% endfor %}
+
+                    {% else %}
+                    <p>null slides</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <ul class="pagination carousel_nav">
+            <li class="page-item">
+                <span class="page-link">
+                    <input type="button" class="form-control start-slide" value="start">
+                </span>
+            </li>
+            <li class="page-item">
+                <span class="page-link">
+                    <input type="button" class="form-control pause-slide" value="pause">
+                </span>
+            </li>
+            <li class="page-item">
+                <span class="page-link">
+                    <input type="button" class="form-control prev-slide" value="previous">
+                </span>
+            </li>
+            <li class="page-item">
+                <span class="page-link">
+                    <input type="button" class="form-control next-slide" value="next">
+                </span>
+            </li>
+        </ul>
+
+    </div>
+
+{% endblock %}
+
+
